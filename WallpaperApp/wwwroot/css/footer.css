@@ -1,0 +1,40 @@
+/* Fooer */
+.footer {
+    border-top: 1px solid rgb(225, 225, 225);
+    width: 100%;
+    padding: 50px 0;
+}
+
+.footer__image {
+    margin-bottom: 20px;
+}
+
+.footer__image a {
+    display: block;
+}
+
+.footer__logo p {
+    color: rgb(131, 131, 131);
+}
+
+.footer__col-nav {
+    margin-top: 20px;
+}
+
+.footer__col-nav ul {
+    display: block;
+}
+
+.footer__col-nav ul li + li {
+    margin-top: 10px;
+}
+
+.footer__col-nav ul li a {
+    color: rgb(131, 131, 131);
+    transition: .2s;
+}
+
+.footer__col-nav ul li a:hover {
+    color: #000;
+    transition: .2s;
+}

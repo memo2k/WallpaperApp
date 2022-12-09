@@ -1,0 +1,34 @@
+/* Hero */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)), url("../images/hero-img.jpg");
+    height: 700px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.hero__inner {
+    padding-top: 260px;
+    color: #fff;
+    max-width: 1000px;
+}
+
+.hero__title {
+    margin-bottom: 20px;
+}
+
+.hero__title h1 {
+    font-size: 80px;
+}
+
+.hero__details p {
+    font-size: 26px;
+}
+
+@media (max-width: 1024px) {
+    .hero__inner {
+        text-align: center;
+    }
+}

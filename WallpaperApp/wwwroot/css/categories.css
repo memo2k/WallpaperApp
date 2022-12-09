@@ -1,0 +1,38 @@
+/* Categories */
+.categories {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.categories__title {
+    margin-bottom: 40px;
+}
+
+.categories ul {
+    justify-content: center;
+    flex-direction: row;
+    flex-flow: wrap;
+    display: flex;
+}
+
+.categories ul li {
+    margin-bottom: 35px;
+}
+
+.categories ul li + li {
+    margin-left: 20px;
+}
+
+.categories ul li a {
+    border: 1px solid #78acf4;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.categories ul li a:hover {
+    background-color: #78acf4;
+    color: #fff;
+    transition: .2s;
+}

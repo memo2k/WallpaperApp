@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/WallpaperApp.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WallpaperApp</a>
@@ -27,6 +27,60 @@
                 </div>
             </div>
         </nav>
+    </header>*@
+
+    <header class="header">
+        <div class="shell">
+            <div class="header__inner">
+                <div class="header__left">
+                    <div class="header__logo">
+                        <a href="#"><img src="images/wallapp-logo-small.png" alt="logo" width="141" height="52"></a>
+                    </div>
+
+                    <div class="header__search">
+                        <form action="">
+                            <div>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+
+                            <input type="text" placeholder="Search wallpapers">
+
+                            <button type="submit" class="btn btn--blue btn--desktop btn--search">Search</button>
+
+                            <button type="submit" class="btn btn--blue btn--mobile btn--search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="header__nav">
+                    <nav class="nav">
+                        <ul>
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+
+                            <li>
+                                <a href="#">Login</a>
+                            </li>
+
+                            <li>
+                                <a href="#">Register</a>
+                            </li>
+
+                            <li>
+                                <a href="#">Upload</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                @*<div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>*@
+            </div>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
