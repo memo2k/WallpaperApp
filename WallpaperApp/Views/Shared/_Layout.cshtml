@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Wallpaper App</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WallpaperApp.styles.css" asp-append-version="true" />
 </head>
 <body>
     @*<header>
@@ -74,25 +72,136 @@
                     </nav>
                 </div>
 
-                @*<div class="hamburger">
+                <div class="hamburger">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
-                </div>*@
+                </div>
             </div>
         </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="wrapper">
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.UtcNow.Year - WallpaperApp - <a asp-area="" asp-controller="Home"></a>
         </div>
+    </footer>*@
+
+    <footer class="footer">
+        <div class="shell shell--wide">
+            <div class="grid">
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="footer__logo">
+                            <div class="footer__image">
+                                <a href="#">
+                                    <img src="images/wallapp-logo (1).png" alt="">
+                                </a>
+                            </div>
+
+                            <p>Wallpaper App &copy; @DateTime.UtcNow.Year</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="foter__col-title">
+                            <h3>WallApp</h3>
+                        </div>
+
+                        <div class="footer__col-nav">
+                            <nav class="nav">
+                                <ul>
+                                    <li>
+                                        <a href="#">About</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Blog</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Community</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Join the team</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Help Center</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Press</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="footer__col-title">
+                            <h3>Wallpapers</h3>
+                        </div>
+
+                        <div class="footer__col-nav">
+                            <div class="nav">
+                                <ul>
+                                    <li>
+                                        <a href="#">Nature</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Anime</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Animals</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Mountain</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Ocean</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">City</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">4K Wallpapers</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">HD Wallpapers</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Minimal</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Cars</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
