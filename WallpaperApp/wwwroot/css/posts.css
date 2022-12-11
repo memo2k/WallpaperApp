@@ -1,4 +1,4 @@
-/* Posts */
+﻿/* Posts */
 .posts {
     max-width: 1600px;
     margin: 0 auto;
@@ -17,14 +17,9 @@
 }
 
 .post {
-    display: none;
     max-width: 500px;
     margin-bottom: 30px;
     break-inside: avoid;
-}
-
-.post:nth-child(n+1):nth-child(-n+11) {
-    display: block;
 }
 
 .post__image {

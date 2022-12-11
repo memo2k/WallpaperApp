@@ -33,7 +33,7 @@ namespace WallpaperApp.Infrastructure.Data.Configuration
             };
 
             user.PasswordHash =
-                 hasher.HashPassword(user, "wauser");
+                 hasher.HashPassword(user, "Wauser1");
 
             users.Add(user);
 
@@ -45,11 +45,11 @@ namespace WallpaperApp.Infrastructure.Data.Configuration
                 UserName = "wauser2",
                 NormalizedUserName = "wauser2",
                 Email = "wauser2@mail.com",
-                NormalizedEmail = "wauser2mail.com"
+                NormalizedEmail = "wauser2@mail.com"
             };
 
             user.PasswordHash =
-                 hasher.HashPassword(user, "wauser2");
+                 hasher.HashPassword(user, "Wauser2");
 
             users.Add(user);
 

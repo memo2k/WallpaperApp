@@ -115,6 +115,15 @@ a {
     transition: .2s;
 }
 
+.btn--logout {
+    border: none;
+    color: rgb(90, 90, 90);
+}
+
+.btn--logout:hover {
+    color: #78acf4;
+}
+
 .btn--transparent {
     width: 150px;
     height: 50px;
@@ -123,11 +132,11 @@ a {
     font-size: 18px;
 }
 
-    .btn--transparent:hover {
-        background-color: #78acf4;
-        color: #fff;
-        transition: .2s;
-    }
+.btn--transparent:hover {
+    background-color: #78acf4;
+    color: #fff;
+    transition: .2s;
+ }
 
 .btn--search {
     height: 100%;
@@ -153,10 +162,10 @@ a {
     color: #fff;
 }
 
-    .btn--blue:hover {
-        background-color: #9cc1f6;
-        transition: .2s;
-    }
+.btn--blue:hover {
+    background-color: #9cc1f6;
+    transition: .2s;
+}
 
 .btn--mobile {
     display: none;

@@ -2,7 +2,7 @@
 
 namespace WallpaperApp.Infrastructure.Data
 {
-    public class ApplicationUser : IdentityUser<string>
+    public class ApplicationUser : IdentityUser
     {
         public string? FirstName { get; set; }
 
