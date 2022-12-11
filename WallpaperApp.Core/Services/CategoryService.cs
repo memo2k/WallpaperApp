@@ -5,30 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WallpaperApp.Core.Contracts;
+using WallpaperApp.Core.Models.Category;
 using WallpaperApp.Core.Models.Wallpaper;
 using WallpaperApp.Infrastructure.Data;
 using WallpaperApp.Infrastructure.Data.Common;
 
 namespace WallpaperApp.Core.Services
 {
-    public class WallpaperService : IWallpaperService
+    public class CategoryService : ICategoryService
     {
         private readonly IRepository repo;
 
-        public WallpaperService(IRepository _repo)
+        public CategoryService(IRepository _repo)
         {
             repo = _repo;
         }
 
-        public async Task<IEnumerable<WallpaperIndexModel>> AllWallpapers()
+        public async Task<IEnumerable<CategoryIndexModel>> AllCategories()
         {
-            return await repo.AllReadonly<Wallpaper>()
-                .Select(x => new WallpaperIndexModel()
+            return await repo.AllReadonly<Category>()
+                .Select(x => new CategoryIndexModel()
                 {
                     Id = x.Id,
-                    Title = x.Title,
-                    ImageUrl = x.ImageUrl,
-                    Likes = x.Likes
+                    Name = x.Name
                 })
                 .ToListAsync();
         }
