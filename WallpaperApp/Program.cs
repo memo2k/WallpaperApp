@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.X86;
 using WallpaperApp.Infrastructure.Data;
+using WallpaperApp.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+     .AddMvcOptions(options =>
+     {
+         options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+     }); ;
 builder.Services.AddApplicationServices();
 
 var app = builder.Build();

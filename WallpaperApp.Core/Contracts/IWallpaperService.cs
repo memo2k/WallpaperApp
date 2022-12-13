@@ -10,5 +10,13 @@ namespace WallpaperApp.Core.Contracts
     public interface IWallpaperService
     {
         Task<IEnumerable<WallpaperIndexModel>> AllWallpapers();
+        Task<IEnumerable<WallpaperCategoryModel>> AllCategories();
+        Task<IEnumerable<WallpaperResolutionModel>> AllResolutions();
+
+        Task<bool> CategoryExists(int categoryId);
+
+        Task<bool> ResolutionExists(int resolutionId);
+
+        Task<int> Create(WallpaperModel model, string userId);
     }
 }

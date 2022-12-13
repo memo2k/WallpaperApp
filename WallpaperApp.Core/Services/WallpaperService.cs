@@ -20,6 +20,28 @@ namespace WallpaperApp.Core.Services
             repo = _repo;
         }
 
+        public async Task<IEnumerable<WallpaperCategoryModel>> AllCategories()
+        {
+            return await repo.AllReadonly<Category>()
+                .Select(x => new WallpaperCategoryModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<WallpaperResolutionModel>> AllResolutions()
+        {
+            return await repo.AllReadonly<Resolution>()
+                .Select(x => new WallpaperResolutionModel()
+                {
+                    Id = x.Id,
+                    Size = x.Size
+                })
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<WallpaperIndexModel>> AllWallpapers()
         {
             return await repo.AllReadonly<Wallpaper>()
@@ -31,6 +53,36 @@ namespace WallpaperApp.Core.Services
                     Likes = x.Likes
                 })
                 .ToListAsync();
+        }
+
+        public async Task<bool> CategoryExists(int categoryId)
+        {
+            return await repo.AllReadonly<Category>()
+                .AnyAsync(c => c.Id == categoryId);
+        }
+
+        public async Task<int> Create(WallpaperModel model, string userId)
+        {
+            var wallpaper = new Wallpaper()
+            {
+                Title = model.Title,
+                Camera = model.Camera,
+                ImageUrl = model.ImageUrl,
+                CategoryId = model.CategoryId,
+                ResolutionId = model.ResolutionId,
+                UserId = userId
+            };
+
+            await repo.AddAsync(wallpaper);
+            await repo.SaveChangesAsync();
+
+            return wallpaper.Id;
+        }
+
+        public async Task<bool> ResolutionExists(int resolutionId)
+        {
+            return await repo.AllReadonly<Resolution>()
+                .AnyAsync(r => r.Id == resolutionId);
         }
     }
 }

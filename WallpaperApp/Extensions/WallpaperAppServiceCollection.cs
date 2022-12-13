@@ -10,7 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IWallpaperService, WallpaperService>();
-            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IApplicationUserService, ApplicationUserService>();
 
             return services;
         }

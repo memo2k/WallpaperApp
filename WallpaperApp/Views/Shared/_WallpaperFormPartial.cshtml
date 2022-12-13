@@ -1,0 +1,76 @@
+﻿@model WallpaperModel
+
+<section class="section-form">
+    <form action="" method="post">
+        <div class="form-create">
+            <div class="form__head">
+                <h2>Upload Wallpaper</h2>
+            </div>
+
+            <div class="form__body">
+                <div class="form__row">
+                    <label asp-for="Title" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Title" class="field" placeholder="Title..."/>
+                    </div>
+
+                    <span asp-validation-for="Title" class=""></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="Camera" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Camera" class="field" placeholder="Camera..." />
+                    </div>
+
+                    <span asp-validation-for="Camera" class=""></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="ImageUrl" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="ImageUrl" class="field" placeholder="Image link..." />
+                    </div>
+
+                    <span asp-validation-for="ImageUrl" class=""></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="CategoryId" class="form__label"></label>
+
+                    <div class="form__field">
+                        <select asp-for="CategoryId">
+                            @foreach (var category in Model.WallpaperCategories) {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <span asp-validation-for="CategoryId" class=""></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="ResolutionId" class="form__label"></label>
+
+                    <div class="form__field">
+                        <select asp-for="ResolutionId">
+                            @foreach (var resolution in Model.WallpaperResolutions)
+                            {
+                                <option value="@resolution.Id">@resolution.Size</option>
+                            }
+                        </select>
+                    </div>
+
+                    <span asp-validation-for="ResolutionId" class=""></span>
+                </div>
+            </div>
+
+            <div class="form__actions">
+                <input class="btn" type="submit" value="Upload" />
+            </div>
+        </div>
+    </form>
+</section>

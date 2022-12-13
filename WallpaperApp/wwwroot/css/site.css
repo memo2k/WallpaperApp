@@ -3,6 +3,7 @@
 @import "hero.css";
 @import "categories.css";
 @import "posts.css";
+@import "form.css";
 
 /* Reset */
 * {
