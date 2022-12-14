@@ -14,10 +14,14 @@ namespace WallpaperApp.Core.Services
     public class WallpaperService : IWallpaperService
     {
         private readonly IRepository repo;
+        private readonly ApplicationDbContext context;
+        private readonly IApplicationUserService applicationUserService;
 
-        public WallpaperService(IRepository _repo)
+        public WallpaperService(IRepository _repo, ApplicationDbContext _context, IApplicationUserService _applicationUserService)
         {
             repo = _repo;
+            context = _context;
+            applicationUserService = _applicationUserService;
         }
 
         public async Task<IEnumerable<WallpaperCategoryModel>> AllCategories()
@@ -61,22 +65,20 @@ namespace WallpaperApp.Core.Services
                 .AnyAsync(c => c.Id == categoryId);
         }
 
-        public async Task<int> Create(WallpaperModel model, string userId)
+        public async Task Create(WallpaperModel model, string userId)
         {
-            var wallpaper = new Wallpaper()
+            Wallpaper wallpaper = new Wallpaper()
             {
                 Title = model.Title,
                 Camera = model.Camera,
                 ImageUrl = model.ImageUrl,
                 CategoryId = model.CategoryId,
                 ResolutionId = model.ResolutionId,
-                UserId = userId
+                UserId = userId,
             };
 
-            await repo.AddAsync(wallpaper);
-            await repo.SaveChangesAsync();
-
-            return wallpaper.Id;
+            await context.Wallpapers.AddAsync(wallpaper);
+            await context.SaveChangesAsync();
         }
 
         public async Task<bool> ResolutionExists(int resolutionId)

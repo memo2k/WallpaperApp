@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,20 @@ namespace WallpaperApp.Core.Services
 {
     public class ApplicationUserService : IApplicationUserService
     {
-        private readonly ApplicationDbContext repo;
+        //private readonly IRepository repo;
+        //private readonly UserManager<ApplicationUser> userManager;
+        //private readonly ApplicationDbContext context;
 
-        public ApplicationUserService(ApplicationDbContext _repo)
-        {
-            repo = _repo;
-        }
+        //public ApplicationUserService(IRepository _repo, UserManager<ApplicationUser> _userManager, ApplicationDbContext _context)
+        //{
+        //    repo = _repo;
+        //    userManager = _userManager;
+        //    context = _context;
+        //}
 
-        public async Task<ApplicationUser> GetApplicationUsertId(string userId)
-        {
-            return await repo.Users.FirstOrDefault(x => x.Id = userId);
-        }
+        //public async Task<ApplicationUser> GetById(string userId)
+        //{
+        //    return await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        //}
     }
 }

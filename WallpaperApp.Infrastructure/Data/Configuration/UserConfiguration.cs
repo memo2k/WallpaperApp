@@ -24,8 +24,6 @@ namespace WallpaperApp.Infrastructure.Data.Configuration
             var user = new ApplicationUser()
             {
                 Id = "dea12856-c198-4129-b3f3-b893d8395082",
-                FirstName = "Georgi",
-                LastName = "Ivanov",
                 UserName = "wauser",
                 NormalizedUserName = "wauser",
                 Email = "wauser@mail.com",
@@ -40,8 +38,6 @@ namespace WallpaperApp.Infrastructure.Data.Configuration
             user = new ApplicationUser()
             {
                 Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
-                FirstName = "Dimitar",
-                LastName = "Petrov",
                 UserName = "wauser2",
                 NormalizedUserName = "wauser2",
                 Email = "wauser2@mail.com",

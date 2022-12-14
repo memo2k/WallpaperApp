@@ -75,8 +75,8 @@ namespace WallpaperApp.Controllers
                 return View(model);
             }
 
-            var userId = await applicationUserService.GetApplicationUserId(User.Id());
-            int id = await wallpaperService.Create(model, userId);
+            //string userId = await applicationUserService.GetById(User.Id());
+            //int id = await wallpaperService.Create(model);
 
             return RedirectToAction(nameof(Index));
         }

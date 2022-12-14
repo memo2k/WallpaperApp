@@ -32,5 +32,7 @@ namespace WallpaperApp.Core.Models.Wallpaper
         public int ResolutionId { get; set; }
 
         public IEnumerable<WallpaperResolutionModel> WallpaperResolutions { get; set; } = new List<WallpaperResolutionModel>();
+
+        public string UserId { get; set; }
     }
 }
