@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
 using WallpaperApp.Infrastructure.Data;
@@ -65,7 +66,13 @@ namespace WallpaperApp.Core.Services
                 .AnyAsync(c => c.Id == categoryId);
         }
 
-        public async Task Create(WallpaperModel model, string userId)
+        public async Task<bool> ResolutionExists(int resolutionId)
+        {
+            return await repo.AllReadonly<Resolution>()
+                .AnyAsync(r => r.Id == resolutionId);
+        }
+
+        public async Task Create(WallpaperModel model)
         {
             Wallpaper wallpaper = new Wallpaper()
             {
@@ -74,17 +81,11 @@ namespace WallpaperApp.Core.Services
                 ImageUrl = model.ImageUrl,
                 CategoryId = model.CategoryId,
                 ResolutionId = model.ResolutionId,
-                UserId = userId,
+                UserId = model.UserId
             };
 
-            await context.Wallpapers.AddAsync(wallpaper);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<bool> ResolutionExists(int resolutionId)
-        {
-            return await repo.AllReadonly<Resolution>()
-                .AnyAsync(r => r.Id == resolutionId);
+            await repo.AddAsync(wallpaper);
+            await repo.SaveChangesAsync();
         }
     }
 }

@@ -13,20 +13,20 @@ namespace WallpaperApp.Core.Services
 {
     public class ApplicationUserService : IApplicationUserService
     {
-        //private readonly IRepository repo;
-        //private readonly UserManager<ApplicationUser> userManager;
-        //private readonly ApplicationDbContext context;
+        private readonly IRepository repo;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext context;
 
-        //public ApplicationUserService(IRepository _repo, UserManager<ApplicationUser> _userManager, ApplicationDbContext _context)
-        //{
-        //    repo = _repo;
-        //    userManager = _userManager;
-        //    context = _context;
-        //}
+        public ApplicationUserService(IRepository _repo, UserManager<ApplicationUser> _userManager, ApplicationDbContext _context)
+        {
+            repo = _repo;
+            userManager = _userManager;
+            context = _context;
+        }
 
-        //public async Task<ApplicationUser> GetById(string userId)
-        //{
-        //    return await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        //}
+        public async Task<ApplicationUser> GetById(string userId)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        }
     }
 }

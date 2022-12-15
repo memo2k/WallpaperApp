@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WallpaperApp.Infrastructure.Migrations
 {
-    public partial class AddedFavoritesCollection : Migration
+    public partial class _2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,35 +14,35 @@ namespace WallpaperApp.Infrastructure.Migrations
                 keyColumn: "Id",
                 keyValue: "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "ebf4871f-9477-4d86-a7e9-a83fef9c0f00", "AQAAAAEAACcQAAAAENaDd2KOv8xTeK3eANDSmrsAu1Hup/kGQxdEI8B8eT6y0W3zNEqZ8ILmhD9iBbY+4g==", "e9e6dc79-ccbd-49f9-93cb-ecfef960ab26" });
+                values: new object[] { "e692eeb1-82eb-4e4d-9148-3fa4d61d7cdc", "AQAAAAEAACcQAAAAEIwi8o3F8RhZ4OsceqySGcHQ3fXIkPF1opFDyDHGKs1eheRmyK+wICIJ/bFmtxhUIA==", "8f4ed150-31f1-421d-8b90-82888eb8c310" });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "dea12856-c198-4129-b3f3-b893d8395082",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "e7d2f353-c940-4576-925f-bbe471185cdc", "AQAAAAEAACcQAAAAEEZopzq6e1YRRsVlTVp4hgX5p35S5ZWT6X26lUKpxrN2qG3Y2vXbP5TJnfroJpS6qQ==", "99fdd4de-0fca-46c8-83fd-694208724090" });
+                values: new object[] { "eb60f6bc-ee63-463b-add7-f92a28b6f047", "AQAAAAEAACcQAAAAEJ9cUcZb3GuLlpJn3mVT94XX1x8Q6/otzkSwW8t8NEStXBDs0LcYDXh6oHHcZyuHXQ==", "d242e6f1-e49d-44d7-ba2d-a9c53c080aa5" });
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 24, 33, 180, DateTimeKind.Local).AddTicks(226));
+                value: new DateTime(2022, 12, 15, 21, 4, 21, 366, DateTimeKind.Local).AddTicks(9155));
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 24, 33, 180, DateTimeKind.Local).AddTicks(271));
+                value: new DateTime(2022, 12, 15, 21, 4, 21, 366, DateTimeKind.Local).AddTicks(9202));
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 24, 33, 180, DateTimeKind.Local).AddTicks(274));
+                value: new DateTime(2022, 12, 15, 21, 4, 21, 366, DateTimeKind.Local).AddTicks(9206));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -52,35 +52,35 @@ namespace WallpaperApp.Infrastructure.Migrations
                 keyColumn: "Id",
                 keyValue: "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "998d2d31-4b0e-4705-9a19-a3a54461c462", "AQAAAAEAACcQAAAAEFeqAFq8wE/A+LvMmxQbjiXvBtJ+tsVPRlxtXVG53MXYvqoZMWVwP08dMFZK2XZEiw==", "3dfdc703-e81a-452c-b05b-c8227a7ab4ce" });
+                values: new object[] { "557b81e2-8b1e-4ccb-87d0-525364dd292d", "AQAAAAEAACcQAAAAEMLT5ZUUCnMnVBsgxP1810HcHQdsCmjhVBzo4Ra+doeQck198zISIpcz10Mh29EcOQ==", null });
 
             migrationBuilder.UpdateData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
                 keyValue: "dea12856-c198-4129-b3f3-b893d8395082",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash", "SecurityStamp" },
-                values: new object[] { "8a7ab51c-fba0-449b-9184-82cd63ca37e7", "AQAAAAEAACcQAAAAEM6sfOmbSU+uRvEqu1hm1bnQRdY+mVVe9s4KIRnQXiGezt2KlWuQNnQTiqdDJCNejg==", "4617cb36-ae31-4d9d-b160-9cb26fd21992" });
+                values: new object[] { "88c1cfba-22aa-4ab4-a767-ceae60e0edad", "AQAAAAEAACcQAAAAEJCbniLSKrkhLYD0lZaTZmn+t3UEJvUL4tFFXkguOmy5F7oTIIpyvUDcgBtjZUYxsA==", null });
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 15, 51, 156, DateTimeKind.Local).AddTicks(7848));
+                value: new DateTime(2022, 12, 15, 20, 32, 18, 865, DateTimeKind.Local).AddTicks(6702));
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 15, 51, 156, DateTimeKind.Local).AddTicks(7892));
+                value: new DateTime(2022, 12, 15, 20, 32, 18, 865, DateTimeKind.Local).AddTicks(6737));
 
             migrationBuilder.UpdateData(
                 table: "Wallpapers",
                 keyColumn: "Id",
                 keyValue: 3,
                 column: "Date",
-                value: new DateTime(2022, 12, 13, 19, 15, 51, 156, DateTimeKind.Local).AddTicks(7896));
+                value: new DateTime(2022, 12, 15, 20, 32, 18, 865, DateTimeKind.Local).AddTicks(6740));
         }
     }
 }

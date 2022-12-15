@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
-using WallpaperApp.Extensions;
 
 namespace WallpaperApp.Controllers
 {
@@ -13,7 +12,8 @@ namespace WallpaperApp.Controllers
         private readonly IWallpaperService wallpaperService;
         private readonly IApplicationUserService applicationUserService;
 
-        public WallpaperController(IWallpaperService _wallpaperService, IApplicationUserService _applicationUserService)
+        public WallpaperController(IWallpaperService _wallpaperService,
+            IApplicationUserService _applicationUserService)
         {
             wallpaperService = _wallpaperService;
             applicationUserService = _applicationUserService;
@@ -45,8 +45,11 @@ namespace WallpaperApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var model = new WallpaperModel()
             {
+                UserId = UserId,
                 WallpaperCategories = await wallpaperService.AllCategories(),
                 WallpaperResolutions = await wallpaperService.AllResolutions()
             };
@@ -57,28 +60,19 @@ namespace WallpaperApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(WallpaperModel model)
         {
-            if ((await wallpaperService.CategoryExists(model.CategoryId)) == false) 
-            {
-                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist.");
-            }
+            model.Date = DateTime.Now;
 
-            if ((await wallpaperService.ResolutionExists(model.ResolutionId)) == false)
-            {
-                ModelState.AddModelError(nameof(model.ResolutionId), "Resolution does not exist.");
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    model.WallpaperCategories = await wallpaperService.AllCategories();
+            //    model.WallpaperResolutions = await wallpaperService.AllResolutions();
 
-            if (!ModelState.IsValid)
-            {
-                model.WallpaperCategories = await wallpaperService.AllCategories();
-                model.WallpaperResolutions = await wallpaperService.AllResolutions();
+            //    return View(model);
+            //}
 
-                return View(model);
-            }
+            await wallpaperService.Create(model);
 
-            //string userId = await applicationUserService.GetById(User.Id());
-            //int id = await wallpaperService.Create(model);
-
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

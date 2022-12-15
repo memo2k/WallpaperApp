@@ -17,6 +17,6 @@ namespace WallpaperApp.Core.Contracts
 
         Task<bool> ResolutionExists(int resolutionId);
 
-        Task Create(WallpaperModel model, string userId);
+        Task Create(WallpaperModel model);
     }
 }

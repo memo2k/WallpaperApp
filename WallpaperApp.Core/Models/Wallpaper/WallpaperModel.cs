@@ -19,6 +19,8 @@ namespace WallpaperApp.Core.Models.Wallpaper
         [StringLength(50, MinimumLength = 1)]
         public string Camera { get; set; } = null!;
 
+        public DateTime Date { get; set; }
+
         [Required]
         [Display(Name = "Image URL")]
         public string ImageUrl { get; set; } = null!;
@@ -33,6 +35,7 @@ namespace WallpaperApp.Core.Models.Wallpaper
 
         public IEnumerable<WallpaperResolutionModel> WallpaperResolutions { get; set; } = new List<WallpaperResolutionModel>();
 
-        public string UserId { get; set; }
+        [Required]
+        public string UserId { get; set; } = null!;
     }
 }

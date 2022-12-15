@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WallpaperApp.Infrastructure.Data
 {
-    public class ApplicationUser : IdentityUser<string>
+    public class ApplicationUser : IdentityUser
     {
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 

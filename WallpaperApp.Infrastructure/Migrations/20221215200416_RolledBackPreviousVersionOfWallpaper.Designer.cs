@@ -12,8 +12,8 @@ using WallpaperApp.Infrastructure.Data;
 namespace WallpaperApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221208172403_SeedDb")]
-    partial class SeedDb
+    [Migration("20221215200416_RolledBackPreviousVersionOfWallpaper")]
+    partial class RolledBackPreviousVersionOfWallpaper
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,12 +180,6 @@ namespace WallpaperApp.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -236,16 +230,15 @@ namespace WallpaperApp.Infrastructure.Migrations
                         {
                             Id = "dea12856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5e2e7c3b-9014-46a6-b03e-aef0512035ab",
+                            ConcurrencyStamp = "7e2d0df9-48dd-40de-b4c3-97f3e5c70447",
                             Email = "wauser@mail.com",
                             EmailConfirmed = false,
-                            FirstName = "Georgi",
-                            LastName = "Ivanov",
                             LockoutEnabled = false,
                             NormalizedEmail = "wauser@mail.com",
                             NormalizedUserName = "wauser",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI4/VahM8BY9+NTDSexy8N9sWieVZI1/87QL7dhxL7dB0kqOPilUiZioOJog/sHkMw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJf/9cmSPCdYqI4jn+6jXwHOzPNiWtXku4KJHDBwQnqqDbrllo6XHAzsInjdN/dcTQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "cc24236c-6834-441d-a338-77668bba32ae",
                             TwoFactorEnabled = false,
                             UserName = "wauser"
                         },
@@ -253,16 +246,15 @@ namespace WallpaperApp.Infrastructure.Migrations
                         {
                             Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1e8257ef-9ee2-4c1f-99ba-87c706711c02",
+                            ConcurrencyStamp = "81d316d9-7799-4ba6-a1f7-431aee141159",
                             Email = "wauser2@mail.com",
                             EmailConfirmed = false,
-                            FirstName = "Dimitar",
-                            LastName = "Petrov",
                             LockoutEnabled = false,
-                            NormalizedEmail = "wauser2mail.com",
+                            NormalizedEmail = "wauser2@mail.com",
                             NormalizedUserName = "wauser2",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJtqMZHcSuO7sKz3Ugwci00D5FT+ztpbEkIyUXEe9Xi3s4lEeCGBBUtOHEWU8VBZLQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF4b0hiwLVmD7LX0A/yab9fCZMmsYxcl8/oRSeBgUBhHhe5J8ugJo84U9ZE1qHrABg==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "0d574978-6af8-421d-8a82-78033d4a248b",
                             TwoFactorEnabled = false,
                             UserName = "wauser2"
                         });
@@ -473,7 +465,7 @@ namespace WallpaperApp.Infrastructure.Migrations
                             Id = 1,
                             Camera = "Samsung S20",
                             CategoryId = 3,
-                            Date = new DateTime(2022, 12, 8, 19, 24, 3, 287, DateTimeKind.Local).AddTicks(634),
+                            Date = new DateTime(2022, 12, 15, 22, 4, 15, 668, DateTimeKind.Local).AddTicks(4580),
                             ImageUrl = "https://images5.alphacoders.com/438/438463.png",
                             Likes = 2,
                             ResolutionId = 3,
@@ -485,7 +477,7 @@ namespace WallpaperApp.Infrastructure.Migrations
                             Id = 2,
                             Camera = "IPhone 12",
                             CategoryId = 1,
-                            Date = new DateTime(2022, 12, 8, 19, 24, 3, 287, DateTimeKind.Local).AddTicks(683),
+                            Date = new DateTime(2022, 12, 15, 22, 4, 15, 668, DateTimeKind.Local).AddTicks(4624),
                             ImageUrl = "https://images.hdqwalls.com/download/nature-background-2560x1440.jpg",
                             Likes = 4,
                             ResolutionId = 4,
@@ -497,7 +489,7 @@ namespace WallpaperApp.Infrastructure.Migrations
                             Id = 3,
                             Camera = "SONY FDR-AX43",
                             CategoryId = 4,
-                            Date = new DateTime(2022, 12, 8, 19, 24, 3, 287, DateTimeKind.Local).AddTicks(687),
+                            Date = new DateTime(2022, 12, 15, 22, 4, 15, 668, DateTimeKind.Local).AddTicks(4626),
                             ImageUrl = "https://wallpaperaccess.com/full/42412.jpg",
                             Likes = 1,
                             ResolutionId = 5,
@@ -579,7 +571,7 @@ namespace WallpaperApp.Infrastructure.Migrations
             modelBuilder.Entity("WallpaperApp.Infrastructure.Data.Favorite", b =>
                 {
                     b.HasOne("WallpaperApp.Infrastructure.Data.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -621,6 +613,8 @@ namespace WallpaperApp.Infrastructure.Migrations
             modelBuilder.Entity("WallpaperApp.Infrastructure.Data.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Favorites");
                 });
 
             modelBuilder.Entity("WallpaperApp.Infrastructure.Data.Category", b =>

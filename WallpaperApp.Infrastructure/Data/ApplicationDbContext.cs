@@ -53,6 +53,5 @@ namespace WallpaperApp.Infrastructure.Data
         public DbSet<Favorite> Favorites { get; set; } = null!;
         public DbSet<Resolution> Resolutions { get; set; } = null!;
         public DbSet<Wallpaper> Wallpapers { get; set; } = null!;
-        public DbSet<VerifiedUser> VerifiedUsers { get; set; } = null!;
     }
 }
