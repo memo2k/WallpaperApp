@@ -87,5 +87,51 @@ namespace WallpaperApp.Core.Services
             await repo.AddAsync(wallpaper);
             await repo.SaveChangesAsync();
         }
+
+        public async Task<WallpapersQueryModel> All(string? category = null, string? searchTerm = null, WallpaperSorting sorting = WallpaperSorting.Latest)
+        {
+            var result = new WallpapersQueryModel();
+            var wallpapers = repo.AllReadonly<Wallpaper>();
+
+            if (string.IsNullOrEmpty(category) == false)
+            {
+                wallpapers = wallpapers
+                    .Where(w => w.Category.Name == category);
+            }
+
+            if (string.IsNullOrEmpty(searchTerm) == false)
+            {
+                searchTerm = $"%{searchTerm.ToLower()}%";
+
+                wallpapers = wallpapers
+                    .Where(w => EF.Functions.Like(w.Title.ToLower(), searchTerm));
+            }
+
+            wallpapers = sorting switch
+            {
+                WallpaperSorting.Likes => wallpapers
+                    .OrderBy(w => w.Likes),
+                _ => wallpapers.OrderByDescending(w => w.Id)
+            };
+
+            result.Wallpapers = await wallpapers
+                .Select(w => new WallpaperServiceModel()
+                {
+                    Title = w.Title,
+                    Id = w.Id,
+                    ImageUrl = w.ImageUrl,
+                })
+                .ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<string>> AllCategoriesNames()
+        {
+            return await repo.AllReadonly<Category>()
+                .Select(c => c.Name)
+                .Distinct()
+                .ToListAsync();
+        }
     }
 }

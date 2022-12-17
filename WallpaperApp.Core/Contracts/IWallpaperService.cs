@@ -18,5 +18,13 @@ namespace WallpaperApp.Core.Contracts
         Task<bool> ResolutionExists(int resolutionId);
 
         Task Create(WallpaperModel model);
+
+        Task<WallpapersQueryModel> All(
+            string? category = null,
+            string? searchTerm = null,
+            WallpaperSorting sorting = WallpaperSorting.Latest
+        );
+
+        Task<IEnumerable<string>> AllCategoriesNames();
     }
 }
