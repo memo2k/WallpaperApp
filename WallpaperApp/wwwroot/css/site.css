@@ -161,6 +161,9 @@ a {
     background-color: #78acf4;
     border: none;
     color: #fff;
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
 }
 
 .btn--blue:hover {

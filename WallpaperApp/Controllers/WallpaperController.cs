@@ -62,13 +62,13 @@ namespace WallpaperApp.Controllers
         {
             model.Date = DateTime.Now;
 
-            //if (!ModelState.IsValid)
-            //{
-            //    model.WallpaperCategories = await wallpaperService.AllCategories();
-            //    model.WallpaperResolutions = await wallpaperService.AllResolutions();
+            if (!ModelState.IsValid)
+            {
+                model.WallpaperCategories = await wallpaperService.AllCategories();
+                model.WallpaperResolutions = await wallpaperService.AllResolutions();
 
-            //    return View(model);
-            //}
+                return View(model);
+            }
 
             await wallpaperService.Create(model);
 

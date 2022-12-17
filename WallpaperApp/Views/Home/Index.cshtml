@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WallpaperIndexModel>
+﻿@*@model IEnumerable<WallpaperIndexModel>*@
+@model IEnumerable<WallpaperIndexModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -41,7 +42,7 @@ else
                                 <img src="@wallpaper.ImageUrl" alt="pfp">
                             </a>
 
-                            <a href="#">User</a>
+                            <a href="#">@wallpaper.Title</a>
                         </div>
 
                         <div class="post__actions">
