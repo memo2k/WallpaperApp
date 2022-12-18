@@ -1,12 +1,23 @@
 /* Hero */
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3)), url("../images/hero-img.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-img.jpg");
     height: 700px;
+    margin-bottom: 60px;
+}
+
+.hero-index {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-index.jpg");
+    height: 1400px;
+}
+
+.hero-index__inverted {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-index-inverted.jpg");
+    height: 1400px;
+}
+
+.hero, .hero-index, .hero-index__inverted {
     background-size: cover;
     background-repeat: no-repeat;
-    margin-bottom: 60px;
-    position: relative;
 }
 
 .hero__inner {

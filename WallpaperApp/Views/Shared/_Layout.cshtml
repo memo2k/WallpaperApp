@@ -17,25 +17,15 @@
                     <div class="header__logo">
                         <a asp-area="" asp-controller="Home" asp-action="Index"><img src="/images/wallapp-logo-small.png" alt="logo" width="141" height="52"></a>
                     </div>
-
-                    <div class="header__search">
-                        <form action="">
-                            <div>
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
-
-                            <input type="text" placeholder="Search wallpapers">
-
-                            <button type="submit" class="btn btn--blue-search btn--desktop btn--search">Search</button>
-
-                            <button type="submit" class="btn btn--blue-search btn--mobile btn--search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
                 </div>
 
                 <div class="header__nav">
                     <nav class="nav">
                         <ul>
+                            <li>
+                                <a asp-area="" asp-controller="Wallpaper" asp-action="All">Browse Now</a>
+                            </li>
+
                             <li>
                                 <a asp-area="" asp-controller="Wallpaper" asp-action="About">About</a>
                             </li>

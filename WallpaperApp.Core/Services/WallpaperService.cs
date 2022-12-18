@@ -119,7 +119,7 @@ namespace WallpaperApp.Core.Services
             wallpapers = sorting switch
             {
                 WallpaperSorting.Likes => wallpapers
-                    .OrderBy(w => w.Likes),
+                    .OrderByDescending(w => w.Likes),
                 _ => wallpapers.OrderByDescending(w => w.Id)
             };
 
@@ -129,6 +129,7 @@ namespace WallpaperApp.Core.Services
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
+                    Likes = w.Likes
                 })
                 .ToListAsync();
 

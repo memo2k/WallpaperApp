@@ -9,17 +9,19 @@
 
     <div class="post__details">
         <div class="post__author">
-            <a href="#">
+            @*<a href="#">
                 <img src="@Model.ImageUrl" alt="pfp">
-            </a>
+            </a>*@
 
             <a href="#">@Model.Title</a>
         </div>
 
         <div class="post__actions">
+            <div>@Model.Likes</div>
+
             <button type="button" class="btn btn--like"><i class="fa-regular fa-heart fa-xl"></i></button>
 
-            <a href="#"><i class="fa-solid fa-ellipsis-vertical fa-xl"></i></a>
+            <button type="button" class="btn btn--like"><i class="fa-regular fa-bookmark fa-xl"></i></button>
         </div>
     </div>
 </div>

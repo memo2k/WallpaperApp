@@ -53,14 +53,16 @@
     align-items: center;
 }
 
-.post__author img {
+/*.post__author img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-}
+}*/
 
 .post__author a {
+    color: #000;
+    margin-left: 10px;
     transition: .2s;
 }
 
@@ -69,20 +71,18 @@
     transition: .2s;
 }
 
-.post__author a + a{
+/*.post__author a + a{
     color: #000;
     margin-left: 10px;
+}*/
+
+.post__actions {
+    display: flex;
+    align-items: center;
 }
 
-.post__actions a {
+.post__actions button {
     margin-left: 10px;
-    transition: .2s;
-    color: #000;
-}
-
-.post__actions a:hover {
-    color: #78acf4;
-    transition: .2s;
 }
 
 @media (max-width: 1024px) {
