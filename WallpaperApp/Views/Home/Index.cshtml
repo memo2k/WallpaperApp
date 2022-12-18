@@ -29,29 +29,7 @@ else
         <div class="posts__feed">
             @foreach (var wallpaper in Model) 
             {
-                <div class="post">
-                    <div class="post__image">
-                        <a href="#">
-                            <img src="@wallpaper.ImageUrl" alt="">
-                        </a>
-                    </div>
-
-                    <div class="post__details">
-                        <div class="post__author">
-                            <a href="#">
-                                <img src="@wallpaper.ImageUrl" alt="pfp">
-                            </a>
-
-                            <a href="#">@wallpaper.Title</a>
-                        </div>
-
-                        <div class="post__actions">
-                            <button type="button" class="btn btn--like"><i class="fa-regular fa-heart fa-xl"></i></button>
-
-                            <a href="#"><i class="fa-solid fa-ellipsis-vertical fa-xl"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
             }
         </div>
     </section>

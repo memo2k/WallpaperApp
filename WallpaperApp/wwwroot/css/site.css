@@ -4,6 +4,7 @@
 @import "categories.css";
 @import "posts.css";
 @import "form.css";
+@import "form-filter.css";
 
 /* Reset */
 * {
@@ -164,6 +165,17 @@ a {
     width: 150px;
     height: 50px;
     font-size: 18px;
+}
+
+.btn--blue-search {
+    background-color: #78acf4;
+    border: none;
+    color: #fff;
+}
+
+.btn--blue-search:hover {
+    background-color: #9cc1f6;
+    transition: .2s;
 }
 
 .btn--blue:hover {

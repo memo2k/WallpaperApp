@@ -88,7 +88,10 @@ namespace WallpaperApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<WallpapersQueryModel> All(string? category = null, string? searchTerm = null, WallpaperSorting sorting = WallpaperSorting.Latest)
+        public async Task<WallpapersQueryModel> All(string? category = null,
+            string? resolution = null,
+            string? searchTerm = null,
+            WallpaperSorting sorting = WallpaperSorting.Latest)
         {
             var result = new WallpapersQueryModel();
             var wallpapers = repo.AllReadonly<Wallpaper>();
@@ -97,6 +100,12 @@ namespace WallpaperApp.Core.Services
             {
                 wallpapers = wallpapers
                     .Where(w => w.Category.Name == category);
+            }
+
+            if (string.IsNullOrEmpty(resolution) == false)
+            {
+                wallpapers = wallpapers
+                    .Where(w => w.Resolution.Size == resolution);
             }
 
             if (string.IsNullOrEmpty(searchTerm) == false)
@@ -130,6 +139,14 @@ namespace WallpaperApp.Core.Services
         {
             return await repo.AllReadonly<Category>()
                 .Select(c => c.Name)
+                .Distinct()
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> AllResolutionsSizes()
+        {
+            return await repo.AllReadonly<Resolution>()
+                .Select(r => r.Size)
                 .Distinct()
                 .ToListAsync();
         }

@@ -21,10 +21,13 @@ namespace WallpaperApp.Core.Contracts
 
         Task<WallpapersQueryModel> All(
             string? category = null,
+            string? resolution = null,
             string? searchTerm = null,
             WallpaperSorting sorting = WallpaperSorting.Latest
         );
 
         Task<IEnumerable<string>> AllCategoriesNames();
+
+        Task<IEnumerable<string>> AllResolutionsSizes();
     }
 }

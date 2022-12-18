@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
+using WallpaperApp.Models;
 
 namespace WallpaperApp.Controllers
 {
@@ -20,11 +21,19 @@ namespace WallpaperApp.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery]AllWallpapersQueryModel query)
         {
-            var model = new WallpapersQueryModel();
+            var result = await wallpaperService.All(
+                query.Category,
+                query.Resolution,
+                query.SearchTerm,
+                query.Sorting);
 
-            return View(model);
+            query.Categories = await wallpaperService.AllCategoriesNames();
+            query.Resolutions = await wallpaperService.AllResolutionsSizes();
+            query.Wallpapers = result.Wallpapers;
+
+            return View(query);
         }
 
         public async Task<IActionResult> Mine()

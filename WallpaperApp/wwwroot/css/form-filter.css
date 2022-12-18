@@ -1,0 +1,39 @@
+﻿/* ----------------------------------------------------------------- */
+/* Section Form */
+/* ----------------------------------------------------------------- */
+.section-form__filter {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* ----------------------------------------------------------------- */
+/* Form */
+/* ----------------------------------------------------------------- */
+.form-filter {
+    color: #000;
+    margin: 0 auto;
+    display: flex;
+    align-items: end;
+}
+
+.form-filter .form__body {
+    display: flex;
+    margin-right: 20px;
+}
+
+.form-filter .form__col {
+    display: block;
+}
+
+.form-filter .form__label {
+    margin-bottom: 10px;
+}
+
+.form-filter .form__col + .form__col {
+    margin-left: 20px;
+}
+
+.form-filter select, .form__body input {
+    padding: 10px 50px 10px 20px;
+    font-size: 18px;
+}
