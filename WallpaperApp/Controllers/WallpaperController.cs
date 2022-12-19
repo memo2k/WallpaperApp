@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
+using WallpaperApp.Extensions;
 using WallpaperApp.Models;
 
 namespace WallpaperApp.Controllers
@@ -38,9 +39,12 @@ namespace WallpaperApp.Controllers
 
         public async Task<IActionResult> Mine()
         {
-            var model = new WallpapersQueryModel();
+            IEnumerable<WallpaperServiceModel> wallpapers;
 
-            return View(model);
+            var userId = User.Id();
+
+            wallpapers = await wallpaperService.AllWallpapersByUserId(userId);
+            return View(wallpapers);
         }
 
         [AllowAnonymous]
@@ -54,11 +58,11 @@ namespace WallpaperApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userId = User.Id();
 
             var model = new WallpaperModel()
             {
-                UserId = UserId,
+                UserId = userId,
                 WallpaperCategories = await wallpaperService.AllCategories(),
                 WallpaperResolutions = await wallpaperService.AllResolutions()
             };

@@ -29,5 +29,7 @@ namespace WallpaperApp.Core.Contracts
         Task<IEnumerable<string>> AllCategoriesNames();
 
         Task<IEnumerable<string>> AllResolutionsSizes();
+
+        Task<IEnumerable<WallpaperServiceModel>> AllWallpapersByUserId(string userId);
     }
 }

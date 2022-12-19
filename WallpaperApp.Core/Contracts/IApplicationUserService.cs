@@ -9,6 +9,8 @@ namespace WallpaperApp.Core.Contracts
 {
     public interface IApplicationUserService
     {
+        Task<bool> ExistsById(string userId);
+
         Task<ApplicationUser> GetById(string userId);
     }
 }

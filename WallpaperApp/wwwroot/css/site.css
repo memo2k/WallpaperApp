@@ -111,6 +111,18 @@ a {
     list-style: none;
 }
 
+/* Page Title */
+.page-title {
+    padding: 160px 0 50px 0;
+    font-size: 30px;
+    color: rgb(70, 70, 70);
+}
+
+.page-title h1 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #78acf4;
+}
+
 /* Buttons */
 .btn {
     cursor: pointer;

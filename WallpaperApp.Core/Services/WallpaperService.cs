@@ -151,5 +151,19 @@ namespace WallpaperApp.Core.Services
                 .Distinct()
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<WallpaperServiceModel>> AllWallpapersByUserId(string userId)
+        {
+            return await repo.AllReadonly<Wallpaper>()
+                .Where(w => w.UserId == userId)
+                .Select(w => new WallpaperServiceModel() 
+                {
+                    Title = w.Title,
+                    Id = w.Id,
+                    ImageUrl = w.ImageUrl,
+                    Likes = w.Likes
+                })
+                .ToListAsync();
+        }
     }
 }

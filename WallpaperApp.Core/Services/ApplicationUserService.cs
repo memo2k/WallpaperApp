@@ -14,14 +14,18 @@ namespace WallpaperApp.Core.Services
     public class ApplicationUserService : IApplicationUserService
     {
         private readonly IRepository repo;
-        private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext context;
 
-        public ApplicationUserService(IRepository _repo, UserManager<ApplicationUser> _userManager, ApplicationDbContext _context)
+        public ApplicationUserService(IRepository _repo, ApplicationDbContext _context)
         {
             repo = _repo;
-            userManager = _userManager;
             context = _context;
+        }
+
+        public async Task<bool> ExistsById(string userId)
+        {
+            return await repo.All<ApplicationUser>()
+                .AnyAsync(a => a.Id == userId);
         }
 
         public async Task<ApplicationUser> GetById(string userId)
