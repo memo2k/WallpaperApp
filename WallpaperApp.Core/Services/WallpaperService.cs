@@ -18,11 +18,10 @@ namespace WallpaperApp.Core.Services
         private readonly ApplicationDbContext context;
         private readonly IApplicationUserService applicationUserService;
 
-        public WallpaperService(IRepository _repo, ApplicationDbContext _context, IApplicationUserService _applicationUserService)
+        public WallpaperService(IRepository _repo, ApplicationDbContext _context)
         {
             repo = _repo;
             context = _context;
-            applicationUserService = _applicationUserService;
         }
 
         public async Task<IEnumerable<WallpaperCategoryModel>> AllCategories()
@@ -129,7 +128,11 @@ namespace WallpaperApp.Core.Services
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
-                    Likes = w.Likes
+                    Likes = w.Likes,
+                    User = new Models.ApplicationUser.ApplicationUserServiceModel()
+                    {
+                        UserName = w.User.UserName
+                    }
                 })
                 .ToListAsync();
 
@@ -164,6 +167,34 @@ namespace WallpaperApp.Core.Services
                     Likes = w.Likes
                 })
                 .ToListAsync();
+        }
+
+        public async Task<WallpaperDetailsModel> WallpaperDetailsById(int id)
+        {
+            return await repo.AllReadonly<Wallpaper>()
+                .Where(w => w.Id == id)
+                .Select(w => new WallpaperDetailsModel()
+                {
+                    Title = w.Title,
+                    Id = w.Id,
+                    ImageUrl = w.ImageUrl,
+                    Likes = w.Likes,
+                    Category = w.Category.Name,
+                    Resolution = w.Resolution.Size,
+                    Camera = w.Camera,
+                    User = new Models.ApplicationUser.ApplicationUserServiceModel()
+                    {
+                        UserName = w.User.UserName,
+                        Email = w.User.Email
+                    }
+                })
+                .FirstAsync();
+        }
+
+        public async Task<bool> Exists(int id)
+        {
+            return await repo.AllReadonly<Wallpaper>()
+                .AnyAsync(a => a.Id == id);
         }
     }
 }

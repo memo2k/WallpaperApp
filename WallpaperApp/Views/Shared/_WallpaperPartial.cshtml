@@ -2,7 +2,7 @@
 
 <div class="post">
     <div class="post__image">
-        <a href="#">
+        <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@Model.Id">
             <img src="@Model.ImageUrl" alt="">
         </a>
     </div>
@@ -13,7 +13,7 @@
                 <img src="@Model.ImageUrl" alt="pfp">
             </a>*@
 
-            <a href="#">@Model.Title</a>
+            <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@Model.Id">@Model.User.UserName</a>
         </div>
 
         <div class="post__actions">

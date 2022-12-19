@@ -1,6 +1,43 @@
 ﻿@model WallpaperDetailsModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Wallpaper Details";
 }
 
+<section class="wallpaper">
+    <div class="wallpaper__image">
+        <img src="@Model.ImageUrl"/>
+    </div>
+
+    <div class="wallpaper__details">
+        <div class="wallpaper__user-details">
+            <div>
+                <h3>@Model.User.UserName</h3>
+            </div>
+
+            <div>
+                <h3>@Model.User.Email</h3>
+            </div>
+
+            <div>
+                <h3>@Model.Category</h3>
+            </div>
+
+            <div>
+                <h3>@Model.Resolution</h3>
+            </div>
+
+            <div>
+                <h3>@Model.Camera</h3>
+            </div>
+
+            <div>
+                <h3>@Model.Title</h3>
+            </div>
+        </div>
+
+        <div class="wallpaper__comments">
+
+        </div>
+    </div>
+</section>

@@ -50,7 +50,12 @@ namespace WallpaperApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
-            var model = new WallpaperDetailsModel();
+            //if (!await wallpaperService.Exists(id))
+            //{
+            //    return RedirectToAction(nameof(All));
+            //}
+
+            var model = await wallpaperService.WallpaperDetailsById(id);
 
             return View(model);
         }

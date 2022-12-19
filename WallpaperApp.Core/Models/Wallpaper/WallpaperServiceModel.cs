@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using WallpaperApp.Core.Models.ApplicationUser;
 
 namespace WallpaperApp.Core.Models.Wallpaper
 {
@@ -14,9 +15,14 @@ namespace WallpaperApp.Core.Models.Wallpaper
 
         public string Title { get; init; } = null!;
 
+        public string Camera { get; init; } = null!;
+
+
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; } = null!;
 
         public int Likes { get; set; }
+
+        public ApplicationUserServiceModel User { get; set; }
     }
 }

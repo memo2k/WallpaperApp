@@ -4,21 +4,25 @@
     ViewBag.Title = "My Wallpapers";
 }
 
-
-<section class="page-title">
-    <div class="shell">
-        <h1>@ViewBag.Title</h1>
-    </div>
-</section>
-
-@if (Model.Any()) 
-{
-    <section class="posts">
-        <div class="posts__feed">
-            @foreach (var wallpaper in Model)
-            {
-                <partial name="_WallpaperPartial" model="@wallpaper" />
-            }
+<section class="my-wallpapers">
+    <div class="page-title">
+        <div class="shell">
+            <h1>@ViewBag.Title</h1>
         </div>
-    </section>
-}
+    </div>
+
+    @if (Model.Any()) 
+    {
+        <section class="posts">
+            <div class="posts__feed">
+                @foreach (var wallpaper in Model)
+                {
+                    <partial name="_WallpaperPartial" model="@wallpaper" />
+                }
+            </div>
+        </section>
+    }
+    else {
+        <h2>You haven't posted anythig yet.</h2>
+    }
+</section>
