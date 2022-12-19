@@ -14,7 +14,6 @@ namespace WallpaperApp.Core.Contracts
         Task<IEnumerable<WallpaperResolutionModel>> AllResolutions();
 
         Task<bool> CategoryExists(int categoryId);
-
         Task<bool> ResolutionExists(int resolutionId);
 
         Task Create(WallpaperModel model);
@@ -27,7 +26,6 @@ namespace WallpaperApp.Core.Contracts
         );
 
         Task<IEnumerable<string>> AllCategoriesNames();
-
         Task<IEnumerable<string>> AllResolutionsSizes();
 
         Task<IEnumerable<WallpaperServiceModel>> AllWallpapersByUserId(string userId);
@@ -35,5 +33,12 @@ namespace WallpaperApp.Core.Contracts
         Task<WallpaperDetailsModel> WallpaperDetailsById(int id);
 
         Task<bool> Exists(int id);
+
+        Task Edit(WallpaperEditModel model);
+
+        Task<int> WallpaperCategoryId(int id);
+        Task<int> WallpaperResolutionId(int id);
+
+        Task<bool> isAuthor(int wallpaperId, string userId);
     }
 }

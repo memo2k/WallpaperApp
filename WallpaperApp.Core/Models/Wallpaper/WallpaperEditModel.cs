@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WallpaperApp.Infrastructure.Data;
+using System.Xml.Linq;
 
 namespace WallpaperApp.Core.Models.Wallpaper
 {
-    public class WallpaperModel
+    public class WallpaperEditModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -21,8 +19,6 @@ namespace WallpaperApp.Core.Models.Wallpaper
         [Required]
         [StringLength(50, MinimumLength = 1)]
         public string Camera { get; set; } = null!;
-
-        public DateTime Date { get; set; }
 
         [Required]
         [Display(Name = "Image URL")]
@@ -38,7 +34,6 @@ namespace WallpaperApp.Core.Models.Wallpaper
 
         public IEnumerable<WallpaperResolutionModel> WallpaperResolutions { get; set; } = new List<WallpaperResolutionModel>();
 
-        [Required]
         public string UserId { get; set; } = null!;
     }
 }

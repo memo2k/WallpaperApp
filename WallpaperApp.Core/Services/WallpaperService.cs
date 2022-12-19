@@ -159,7 +159,7 @@ namespace WallpaperApp.Core.Services
         {
             return await repo.AllReadonly<Wallpaper>()
                 .Where(w => w.UserId == userId)
-                .Select(w => new WallpaperServiceModel() 
+                .Select(w => new WallpaperServiceModel()
                 {
                     Title = w.Title,
                     Id = w.Id,
@@ -195,6 +195,45 @@ namespace WallpaperApp.Core.Services
         {
             return await repo.AllReadonly<Wallpaper>()
                 .AnyAsync(a => a.Id == id);
+        }
+
+        public async Task Edit(WallpaperEditModel model)
+        {
+            var wallpaper = await repo.GetByIdAsync<Wallpaper>(model.Id);
+
+            wallpaper.Title = model.Title;
+            wallpaper.Camera = model.Camera;
+            wallpaper.CategoryId = model.CategoryId;
+            wallpaper.ResolutionId = model.ResolutionId;
+
+            await repo.SaveChangesAsync();
+        }
+
+        public async Task<int> WallpaperCategoryId(int id)
+        {
+            return (await repo.GetByIdAsync<Wallpaper>(id)).CategoryId;
+        }
+
+        public async Task<int> WallpaperResolutionId(int id)
+        {
+            return (await repo.GetByIdAsync<Wallpaper>(id)).ResolutionId;
+        }
+
+        public async Task<bool> isAuthor(int wallpaperId, string userId)
+        {
+            var result = false;
+
+            var wallpaper = await repo.AllReadonly<Wallpaper>()
+                .Where(w => w.Id == wallpaperId)
+                .Include(w => w.User)
+                .FirstOrDefaultAsync();
+
+            if (wallpaper?.User != null && wallpaper.User.Id == userId)
+            {
+                result = true;
+            }
+
+            return result;
         }
     }
 }

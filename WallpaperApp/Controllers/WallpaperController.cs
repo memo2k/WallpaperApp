@@ -50,10 +50,10 @@ namespace WallpaperApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
-            //if (!await wallpaperService.Exists(id))
-            //{
-            //    return RedirectToAction(nameof(All));
-            //}
+            if (!await wallpaperService.Exists(id))
+            {
+                return RedirectToAction(nameof(All));
+            }
 
             var model = await wallpaperService.WallpaperDetailsById(id);
 
@@ -96,14 +96,61 @@ namespace WallpaperApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var model = new WallpaperModel();
+            if (!await wallpaperService.Exists(id))
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            if (!await wallpaperService.isAuthor(id, User.Id()))
+            {
+                return RedirectToAction("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            var wallpaper = await wallpaperService.WallpaperDetailsById(id);
+            var categoryId = await wallpaperService.WallpaperCategoryId(id);
+            var resolutionId = await wallpaperService.WallpaperResolutionId(id);
+
+            var model = new WallpaperEditModel()
+            {
+                Id = id,
+                Title = wallpaper.Title,
+                Camera = wallpaper.Camera,
+                CategoryId = categoryId,
+                ResolutionId = resolutionId,
+                WallpaperCategories = await wallpaperService.AllCategories(),
+                WallpaperResolutions = await wallpaperService.AllResolutions()
+            };
 
             return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, WallpaperModel model)
+        public async Task<IActionResult> Edit(int id, WallpaperEditModel model)
         {
+            if (!await wallpaperService.Exists(id))
+            {
+                ModelState.AddModelError("", "Post does not exist.");
+                model.WallpaperCategories = await wallpaperService.AllCategories();
+                model.WallpaperResolutions = await wallpaperService.AllResolutions();
+
+                return View(model);
+            }
+
+            if (!await wallpaperService.isAuthor(id, User.Id()))
+            {
+                return RedirectToAction("/Account/AccessDenied", new { area = "Identity" });
+            }
+
+            if (!ModelState.IsValid)
+            {
+                model.WallpaperCategories = await wallpaperService.AllCategories();
+                model.WallpaperResolutions = await wallpaperService.AllResolutions();
+
+                return View(model);
+            }
+
+            await wallpaperService.Edit(model);
+
             return RedirectToAction(nameof(Details), new { id });
         }
 
