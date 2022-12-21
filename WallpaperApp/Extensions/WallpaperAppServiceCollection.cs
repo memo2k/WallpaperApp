@@ -11,6 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IWallpaperService, WallpaperService>();
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
+            services.AddScoped<ILikeService, LikeService>();
 
             return services;
         }

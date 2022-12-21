@@ -20,8 +20,6 @@ namespace WallpaperApp.Infrastructure.Data
         [Required]
         public string ImageUrl { get; set; } = null!;
 
-        public int Likes { get; set; }
-
         public DateTime Date { get; set; }
 
         [Required]
@@ -42,6 +40,10 @@ namespace WallpaperApp.Infrastructure.Data
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
 
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
+
+        public List<Favorite> Favorites { get; set; } = new List<Favorite>();
+
+        public List<Like> Likes { get; set; } = new List<Like>();
     }
 }

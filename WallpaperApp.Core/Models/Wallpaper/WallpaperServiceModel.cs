@@ -21,8 +21,6 @@ namespace WallpaperApp.Core.Models.Wallpaper
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; } = null!;
 
-        public int Likes { get; set; }
-
         public ApplicationUserServiceModel User { get; set; }
     }
 }

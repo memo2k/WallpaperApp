@@ -16,7 +16,6 @@ namespace WallpaperApp.Core.Services
     {
         private readonly IRepository repo;
         private readonly ApplicationDbContext context;
-        private readonly IApplicationUserService applicationUserService;
 
         public WallpaperService(IRepository _repo, ApplicationDbContext _context)
         {
@@ -54,7 +53,6 @@ namespace WallpaperApp.Core.Services
                     Id = x.Id,
                     Title = x.Title,
                     ImageUrl = x.ImageUrl,
-                    Likes = x.Likes
                 })
                 .ToListAsync();
         }
@@ -80,7 +78,8 @@ namespace WallpaperApp.Core.Services
                 ImageUrl = model.ImageUrl,
                 CategoryId = model.CategoryId,
                 ResolutionId = model.ResolutionId,
-                UserId = model.UserId
+                UserId = model.UserId,
+                Date = model.Date,
             };
 
             await repo.AddAsync(wallpaper);
@@ -128,7 +127,6 @@ namespace WallpaperApp.Core.Services
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
-                    Likes = w.Likes,
                     User = new Models.ApplicationUser.ApplicationUserServiceModel()
                     {
                         UserName = w.User.UserName
@@ -164,7 +162,6 @@ namespace WallpaperApp.Core.Services
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
-                    Likes = w.Likes
                 })
                 .ToListAsync();
         }
@@ -178,7 +175,6 @@ namespace WallpaperApp.Core.Services
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
-                    Likes = w.Likes,
                     Category = w.Category.Name,
                     Resolution = w.Resolution.Size,
                     Camera = w.Camera,
@@ -194,7 +190,7 @@ namespace WallpaperApp.Core.Services
         public async Task<bool> Exists(int id)
         {
             return await repo.AllReadonly<Wallpaper>()
-                .AnyAsync(a => a.Id == id);
+                .AnyAsync(w => w.Id == id);
         }
 
         public async Task Edit(WallpaperEditModel model)
@@ -234,6 +230,23 @@ namespace WallpaperApp.Core.Services
             }
 
             return result;
+        }
+
+        public async Task Delete(int wallpaperId)
+        {
+            await repo.DeleteAsync<Wallpaper>(wallpaperId);
+
+            await repo.SaveChangesAsync();
+        }
+
+        public Task<bool> IsLikedByUser(int wallpaperId, string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Like(int wallpaperId, string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

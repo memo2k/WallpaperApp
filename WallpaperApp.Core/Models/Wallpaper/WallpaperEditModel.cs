@@ -20,10 +20,6 @@ namespace WallpaperApp.Core.Models.Wallpaper
         [StringLength(50, MinimumLength = 1)]
         public string Camera { get; set; } = null!;
 
-        [Required]
-        [Display(Name = "Image URL")]
-        public string ImageUrl { get; set; } = null!;
-
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 

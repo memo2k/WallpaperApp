@@ -6,8 +6,10 @@ namespace WallpaperApp.Infrastructure.Data
 {
     public class ApplicationUser : IdentityUser
     {
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
-        public ICollection<Favorite> Favorites { get; set; } = new HashSet<Favorite>();
+        public List<Favorite> Favorites { get; set; } = new List<Favorite>();
+
+        public List<Like> Likes { get; set; } = new List<Like>();
     }
 }

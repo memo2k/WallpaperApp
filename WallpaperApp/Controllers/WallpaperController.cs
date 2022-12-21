@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using WallpaperApp.Core.Contracts;
@@ -125,9 +126,9 @@ namespace WallpaperApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, WallpaperEditModel model)
+        public async Task<IActionResult> Edit(WallpaperEditModel model)
         {
-            if (!await wallpaperService.Exists(id))
+            if (!await wallpaperService.Exists(model.Id))
             {
                 ModelState.AddModelError("", "Post does not exist.");
                 model.WallpaperCategories = await wallpaperService.AllCategories();
@@ -136,28 +137,30 @@ namespace WallpaperApp.Controllers
                 return View(model);
             }
 
-            if (!await wallpaperService.isAuthor(id, User.Id()))
+            if (!await wallpaperService.isAuthor(model.Id, User.Id()))
             {
                 return RedirectToAction("/Account/AccessDenied", new { area = "Identity" });
             }
 
-            if (!ModelState.IsValid)
-            {
-                model.WallpaperCategories = await wallpaperService.AllCategories();
-                model.WallpaperResolutions = await wallpaperService.AllResolutions();
+            //if (!ModelState.IsValid)
+            //{
+            //    model.WallpaperCategories = await wallpaperService.AllCategories();
+            //    model.WallpaperResolutions = await wallpaperService.AllResolutions();
 
-                return View(model);
-            }
+            //    return View(model);
+            //}
 
             await wallpaperService.Edit(model);
 
-            return RedirectToAction(nameof(Details), new { id });
+            return RedirectToAction(nameof(Details), new { model.Id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            return RedirectToAction(nameof(All));
+            await wallpaperService.Delete(id);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

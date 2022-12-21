@@ -45,12 +45,43 @@ namespace WallpaperApp.Infrastructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
             });
 
+            builder.Entity<Favorite>(f =>
+            {
+                f.HasKey(uw => new { uw.UserId, uw.WallpaperId });
+
+                f.HasOne(u => u.User)
+                .WithMany(f => f.Favorites)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+                f.HasOne(w => w.Wallpaper)
+                .WithMany(f => f.Favorites)
+                .HasForeignKey(u => u.WallpaperId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<Like>(f =>
+            {
+                f.HasKey(uw => new { uw.UserId, uw.WallpaperId });
+
+                f.HasOne(u => u.User)
+                .WithMany(l => l.Likes)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+                f.HasOne(w => w.Wallpaper)
+                .WithMany(l => l.Likes)
+                .HasForeignKey(u => u.WallpaperId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
             base.OnModelCreating(builder);
         }
 
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<Favorite> Favorites { get; set; } = null!;
+        public DbSet<Like> Likes { get; set; } = null!;
         public DbSet<Resolution> Resolutions { get; set; } = null!;
         public DbSet<Wallpaper> Wallpapers { get; set; } = null!;
     }
