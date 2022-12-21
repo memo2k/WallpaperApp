@@ -1,0 +1,31 @@
+﻿@using WallpaperApp.Core.Models.Comment
+
+@model AddCommentViewModel
+
+<section class="section-form">
+    <form asp-action="Add" method="post">
+        <input asp-for="@Model.WallpaperId" hidden>
+        <input asp-for="@Model.UserId" hidden>
+        <div class="form">
+            <div class="form__head">
+                <h2>Add a Comment</h2>
+            </div>
+
+            <div class="form__body">
+                <div class="form__row">
+                    <label asp-for="@Model.Text" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="@Model.Text" class="field" placeholder="Type here..." />
+                    </div>
+
+                    <span asp-validation-for="@Model.Text" class="form__validation"></span>
+                </div>
+            </div>
+
+            <div class="form__actions">
+                <input class="btn btn--blue" type="submit" value="Add" />
+            </div>
+        </div>
+    </form>
+</section>
