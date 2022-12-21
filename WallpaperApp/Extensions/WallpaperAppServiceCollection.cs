@@ -13,6 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IApplicationUserService, ApplicationUserService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddScoped<ILikeService, LikeService>();
+            services.AddScoped<ICommentService, CommentService>();
 
             return services;
         }

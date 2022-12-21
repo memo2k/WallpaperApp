@@ -19,13 +19,20 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:RequiredLength");
     options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews()
      .AddMvcOptions(options =>
      {
+         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
          options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
      });
 builder.Services.AddApplicationServices();
+
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.LoginPath = "/User/Login";
+//});
 
 var app = builder.Build();
 
@@ -47,9 +54,18 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapRazorPages();
+});
 
 app.Run();
