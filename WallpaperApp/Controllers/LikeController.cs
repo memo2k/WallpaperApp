@@ -36,7 +36,7 @@ namespace WallpaperApp.Controllers
             var userId = User.Id();
             await likeService.Unlike(userId, model.Id);
 
-            return RedirectToAction("Liked", "Like");
+            return RedirectToAction("AllLiked", "Like");
         }
     }
 }

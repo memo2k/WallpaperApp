@@ -14,12 +14,15 @@ namespace WallpaperApp.Controllers
     {
         private readonly IWallpaperService wallpaperService;
         private readonly IApplicationUserService applicationUserService;
+        private readonly ICommentService commentService;
 
         public WallpaperController(IWallpaperService _wallpaperService,
-            IApplicationUserService _applicationUserService)
+            IApplicationUserService _applicationUserService,
+            ICommentService _commentService)
         {
             wallpaperService = _wallpaperService;
             applicationUserService = _applicationUserService;
+            commentService = _commentService;
         }
 
         [AllowAnonymous]
@@ -40,12 +43,9 @@ namespace WallpaperApp.Controllers
 
         public async Task<IActionResult> Mine()
         {
-            IEnumerable<WallpaperServiceModel> wallpapers;
-
             var userId = User.Id();
-
-            wallpapers = await wallpaperService.AllWallpapersByUserId(userId);
-            return View(wallpapers);
+            var model = await wallpaperService.AllWallpapersByUserId(userId);
+            return View(model);
         }
 
         [AllowAnonymous]
@@ -158,15 +158,26 @@ namespace WallpaperApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            //if (await wallpaperService.HasLikes(id))
+            //{
+            //    await wallpaperService.DeleteFromLikes(id);
+            //}
+
+            //if (await wallpaperService.HasFavorites(id))
+            //{
+            //    await wallpaperService.DeleteFromFavorites(id);
+            //}
+
             await wallpaperService.Delete(id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Wallpaper");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Like(int id)
+        public async Task<IActionResult> AllComments(int wallpaperId)
         {
-            return RedirectToAction(nameof(Mine));
+            var comments = await commentService.GetAllComments(wallpaperId);
+
+            return View(comments);
         }
     }
 }
