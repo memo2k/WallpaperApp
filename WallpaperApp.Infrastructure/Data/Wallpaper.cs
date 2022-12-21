@@ -45,5 +45,7 @@ namespace WallpaperApp.Infrastructure.Data
         public List<Favorite> Favorites { get; set; } = new List<Favorite>();
 
         public List<Like> Likes { get; set; } = new List<Like>();
+
+        public bool IsActive { get; set; } = true;
     }
 }
