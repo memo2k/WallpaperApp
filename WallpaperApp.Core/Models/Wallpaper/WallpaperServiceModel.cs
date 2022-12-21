@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using WallpaperApp.Core.Models.ApplicationUser;
+using WallpaperApp.Infrastructure.Data;
 
 namespace WallpaperApp.Core.Models.Wallpaper
 {
@@ -21,6 +22,6 @@ namespace WallpaperApp.Core.Models.Wallpaper
         [Display(Name = "Image URL")]
         public string ImageUrl { get; init; } = null!;
 
-        public ApplicationUserServiceModel User { get; set; }
+        public ApplicationUserServiceModel User { get; set; } = null!;
     }
 }
