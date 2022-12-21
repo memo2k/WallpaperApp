@@ -22,15 +22,9 @@ namespace WallpaperApp.Core.Services
             context = _context;
         }
 
-        public async Task<bool> ExistsById(string userId)
+        public async Task<ApplicationUser> GetUserById(string userId)
         {
-            return await repo.All<ApplicationUser>()
-                .AnyAsync(a => a.Id == userId);
-        }
-
-        public async Task<ApplicationUser> GetById(string userId)
-        {
-            return await context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            return await repo.GetByIdAsync<ApplicationUser>(userId);
         }
     }
 }

@@ -48,6 +48,7 @@ namespace WallpaperApp.Core.Services
         public async Task<IEnumerable<WallpaperIndexModel>> AllWallpapers()
         {
             return await repo.AllReadonly<Wallpaper>()
+                .Where(f => f.IsActive)
                 .Select(x => new WallpaperIndexModel()
                 {
                     Id = x.Id,
@@ -82,8 +83,16 @@ namespace WallpaperApp.Core.Services
                 Date = model.Date,
             };
 
-            await repo.AddAsync(wallpaper);
-            await repo.SaveChangesAsync();
+            try
+            {
+                await repo.AddAsync(wallpaper);
+                await repo.SaveChangesAsync();
+            } 
+            catch (Exception)
+            {
+                throw null;
+            }
+            
         }
 
         public async Task<WallpapersQueryModel> All(string? category = null,
@@ -117,11 +126,12 @@ namespace WallpaperApp.Core.Services
             wallpapers = sorting switch
             {
                 WallpaperSorting.Likes => wallpapers
-                    .OrderByDescending(w => w.Likes),
+                    .OrderByDescending(w => w.Likes.Count),
                 _ => wallpapers.OrderByDescending(w => w.Id)
             };
 
             result.Wallpapers = await wallpapers
+                .Where(f => f.IsActive)
                 .Select(w => new WallpaperServiceModel()
                 {
                     Title = w.Title,
@@ -157,11 +167,16 @@ namespace WallpaperApp.Core.Services
         {
             return await repo.AllReadonly<Wallpaper>()
                 .Where(w => w.UserId == userId)
+                .Where(f => f.IsActive)
                 .Select(w => new WallpaperServiceModel()
                 {
                     Title = w.Title,
                     Id = w.Id,
                     ImageUrl = w.ImageUrl,
+                    User = new Models.ApplicationUser.ApplicationUserServiceModel()
+                    {
+                        UserName = w.User.UserName
+                    }
                 })
                 .ToListAsync();
         }
@@ -170,6 +185,7 @@ namespace WallpaperApp.Core.Services
         {
             return await repo.AllReadonly<Wallpaper>()
                 .Where(w => w.Id == id)
+                .Where(f => f.IsActive)
                 .Select(w => new WallpaperDetailsModel()
                 {
                     Title = w.Title,
@@ -234,19 +250,50 @@ namespace WallpaperApp.Core.Services
 
         public async Task Delete(int wallpaperId)
         {
-            await repo.DeleteAsync<Wallpaper>(wallpaperId);
+            var wallpaper = await repo.GetByIdAsync<Wallpaper>(wallpaperId);
+            wallpaper.IsActive = false;
 
             await repo.SaveChangesAsync();
         }
 
-        public Task<bool> IsLikedByUser(int wallpaperId, string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<bool> HasLikes(int id)
+        //{
+        //    return await repo.AllReadonly<Like>()
+        //        .AnyAsync(l => l.WallpaperId == id);
+        //}
 
-        public Task Like(int wallpaperId, string userId)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<bool> HasFavorites(int id)
+        //{
+        //    return await repo.AllReadonly<Favorite>()
+        //        .AnyAsync(f => f.WallpaperId == id);
+        //}
+
+        //public async Task DeleteFromLikes(int id)
+        //{
+        //    var likes = repo.All<Like>()
+        //        .Where(l => l.WallpaperId == id)
+        //        .Include(l => l.UserId);
+
+        //    foreach (var like in likes)
+        //    {
+        //        await repo.DeleteAsync<Like>(like);
+        //    }
+
+        //    await repo.SaveChangesAsync();
+        //}
+
+        //public async Task DeleteFromFavorites(int id)
+        //{
+        //    var favorites = repo.All<Favorite>()
+        //        .Where(f => f.WallpaperId == id)
+        //        .Include(f => f.UserId);
+
+        //    foreach (var favorite in favorites)
+        //    {
+        //        await repo.DeleteAsync<Favorite>(favorite);
+        //    }
+
+        //    await repo.SaveChangesAsync();
+        //}
     }
 }

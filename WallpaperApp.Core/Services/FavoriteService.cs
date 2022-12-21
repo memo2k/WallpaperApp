@@ -49,6 +49,11 @@ namespace WallpaperApp.Core.Services
             var user = await repo.GetByIdAsync<ApplicationUser>(userId);
             var wallpaper = await repo.GetByIdAsync<Wallpaper>(model.Id);
 
+            if (user == null || wallpaper == null)
+            {
+                throw new Exception();
+            }
+
             user.Favorites.Add(new Favorite()
             {
                 User = user,
@@ -61,6 +66,12 @@ namespace WallpaperApp.Core.Services
         public async Task RemoveFromFavorite(string userId, int wallpaperId)
         {
             var favorite = await repo.GetByIdsAsync<Favorite>(new object[] { userId, wallpaperId });
+
+            if (favorite == null)
+            {
+                throw new Exception();
+            }
+
             favorite.IsActive = false;
 
             await repo.SaveChangesAsync();

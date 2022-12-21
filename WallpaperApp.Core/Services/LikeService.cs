@@ -25,6 +25,11 @@ namespace WallpaperApp.Core.Services
             var user = await repo.GetByIdAsync<ApplicationUser>(userId);
             var wallpaper = await repo.GetByIdAsync<Wallpaper>(model.Id);
 
+            if (user == null || wallpaper == null)
+            {
+                throw new Exception();
+            }
+
             user.Likes.Add(new Like()
             {
                 User = user,
@@ -56,6 +61,12 @@ namespace WallpaperApp.Core.Services
         public async Task Unlike(string userId, int wallpaperId)
         {
             var like = await repo.GetByIdsAsync<Like>(new object[] { userId, wallpaperId });
+
+            if (like == null)
+            {
+                throw new Exception();
+            }
+
             like.IsActive = false;
 
             await repo.SaveChangesAsync();
