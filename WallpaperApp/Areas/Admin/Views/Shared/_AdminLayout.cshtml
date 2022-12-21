@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Wallpaper App - Administrator</title>
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/7db5b19640.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <partial name="_UserMessages" />
+    <header class="header">
+        <div class="shell">
+            <div class="header__inner">
+                <div class="header__left">
+                    <div class="header__logo">
+                        <a asp-area="" asp-controller="Home" asp-action="Index"><img src="/images/wallapp-logo-small.png" alt="logo" width="141" height="52"></a>
+                    </div>
+                </div>
+
+                <div class="header__nav">
+                    <nav class="nav">
+                        <ul>
+                            <li>
+                                <a asp-area="" asp-controller="Wallpaper" asp-action="All">Browse Now</a>
+                            </li>
+
+                            <li>
+                                <a asp-area="" asp-controller="Wallpaper" asp-action="About">About</a>
+                            </li>
+
+                            <partial name="_LoginPartial" />
+
+                            @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated) 
+                            {
+                                <li>
+                                    <a asp-area="" asp-controller="Wallpaper" asp-action="Add">Upload</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <h1>Administration area</h1>
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="shell shell--wide">
+            <div class="grid">
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="footer__logo">
+                            <div class="footer__image">
+                                <a href="#">
+                                    <img src="/images/wallapp-logo (1).png" alt="">
+                                </a>
+                            </div>
+
+                            <p>Wallpaper App &copy; @DateTime.UtcNow.Year</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="foter__col-title">
+                            <h3>WallApp</h3>
+                        </div>
+
+                        <div class="footer__col-nav">
+                            <nav class="nav">
+                                <ul>
+                                    <li>
+                                        <a href="#">About</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Blog</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Community</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Join the team</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Help Center</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Press</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid__col grid__col--1of3">
+                    <div class="footer__col">
+                        <div class="footer__col-title">
+                            <h3>Wallpapers</h3>
+                        </div>
+
+                        <div class="footer__col-nav">
+                            <div class="nav">
+                                <ul>
+                                    <li>
+                                        <a href="#">Nature</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Anime</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Animals</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Mountain</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Ocean</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">City</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">4K Wallpapers</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">HD Wallpapers</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Minimal</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Cars</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
