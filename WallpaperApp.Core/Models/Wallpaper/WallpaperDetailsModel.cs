@@ -12,5 +12,7 @@ namespace WallpaperApp.Core.Models.Wallpaper
         public string Category { get; set; } = null!;
 
         public string Resolution { get; set; } = null!;
+
+        public bool IsAuthor { get; set; }
     }
 }
