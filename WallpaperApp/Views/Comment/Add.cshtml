@@ -16,7 +16,7 @@
                     <label asp-for="@Model.Text" class="form__label"></label>
 
                     <div class="form__field">
-                        <input asp-for="@Model.Text" class="field" placeholder="Type here..." />
+                        <textarea asp-for="@Model.Text" class="field-textarea" placeholder="Type here..."></textarea>
                     </div>
 
                     <span asp-validation-for="@Model.Text" class="form__validation"></span>

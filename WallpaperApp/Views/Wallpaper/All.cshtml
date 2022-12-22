@@ -73,9 +73,14 @@
 
 <section class="posts">
     <div class="posts__feed">
-        @foreach (var wallpaper in Model.Wallpapers)
-        {
-            <partial name="_WallpaperPartial" model="@wallpaper" />
+        @if (Model.Wallpapers.Any()) {
+            @foreach (var wallpaper in Model.Wallpapers)
+            {
+                <partial name="_WallpaperPartial" model="@wallpaper" />
+            }
+        }
+        else {
+            <h1>No wallpapers yet...</h1>
         }
     </div>
 </section>
