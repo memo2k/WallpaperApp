@@ -1,4 +1,8 @@
-﻿.details-wallpaper .details__image {
+﻿.details-wallpaper {
+    padding-top: 80px;
+}
+
+.details-wallpaper .details__image {
     max-width: 100%;
     background-color: rgb(51, 56, 70);
     text-align: center;

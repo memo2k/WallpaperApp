@@ -84,6 +84,7 @@ ul {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        justify-content: center;
     }
 
     .grid .grid__col--1of3 {
