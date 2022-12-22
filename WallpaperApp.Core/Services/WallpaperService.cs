@@ -196,6 +196,7 @@ namespace WallpaperApp.Core.Services
                     Camera = w.Camera,
                     User = new Models.ApplicationUser.ApplicationUserServiceModel()
                     {
+                        Id = w.User.Id,
                         UserName = w.User.UserName,
                         Email = w.User.Email
                     }
@@ -256,44 +257,5 @@ namespace WallpaperApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        //public async Task<bool> HasLikes(int id)
-        //{
-        //    return await repo.AllReadonly<Like>()
-        //        .AnyAsync(l => l.WallpaperId == id);
-        //}
-
-        //public async Task<bool> HasFavorites(int id)
-        //{
-        //    return await repo.AllReadonly<Favorite>()
-        //        .AnyAsync(f => f.WallpaperId == id);
-        //}
-
-        //public async Task DeleteFromLikes(int id)
-        //{
-        //    var likes = repo.All<Like>()
-        //        .Where(l => l.WallpaperId == id)
-        //        .Include(l => l.UserId);
-
-        //    foreach (var like in likes)
-        //    {
-        //        await repo.DeleteAsync<Like>(like);
-        //    }
-
-        //    await repo.SaveChangesAsync();
-        //}
-
-        //public async Task DeleteFromFavorites(int id)
-        //{
-        //    var favorites = repo.All<Favorite>()
-        //        .Where(f => f.WallpaperId == id)
-        //        .Include(f => f.UserId);
-
-        //    foreach (var favorite in favorites)
-        //    {
-        //        await repo.DeleteAsync<Favorite>(favorite);
-        //    }
-
-        //    await repo.SaveChangesAsync();
-        //}
     }
 }

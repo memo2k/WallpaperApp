@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WallpaperApp.Core.Contracts;
-using WallpaperApp.Core.Models.Favorite;
 using WallpaperApp.Core.Models.Wallpaper;
 using WallpaperApp.Infrastructure.Data;
 using WallpaperApp.Infrastructure.Data.Common;
@@ -30,6 +29,7 @@ namespace WallpaperApp.Core.Services
             return await repo.AllReadonly<Favorite>()
                 .Where(f => f.UserId == userId)
                 .Where(f => f.IsActive)
+                .Where(f => f.Wallpaper.IsActive)
                 .Select(f => new WallpaperServiceModel()
                 {
                     Id = f.WallpaperId,
@@ -54,11 +54,20 @@ namespace WallpaperApp.Core.Services
                 throw new Exception();
             }
 
-            user.Favorites.Add(new Favorite()
+            var favorite = await repo.GetByIdsAsync<Favorite>(new object[] { userId, model.Id });
+
+            if (favorite != null)
             {
-                User = user,
-                Wallpaper = wallpaper
-            });
+                favorite.IsActive = true;
+            }
+            else
+            {
+                user.Favorites.Add(new Favorite()
+                {
+                    User = user,
+                    Wallpaper = wallpaper
+                });
+            }
 
             await repo.SaveChangesAsync();
         }
@@ -75,6 +84,25 @@ namespace WallpaperApp.Core.Services
             favorite.IsActive = false;
 
             await repo.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsInFavorites(string userId, int wallpaperId)
+        {
+            var favorite = await repo.GetByIdsAsync<Favorite>(new object[] { userId, wallpaperId });
+
+            if (favorite == null)
+            {
+                return false;
+            }
+
+            if (favorite.IsActive == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

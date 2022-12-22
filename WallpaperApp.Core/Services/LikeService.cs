@@ -20,6 +20,25 @@ namespace WallpaperApp.Core.Services
             repo = _repo;
         }
 
+        public async Task<bool> IsInLikes(string userId, int wallpaperId)
+        {
+            var like = await repo.GetByIdsAsync<Like>(new object[] { userId, wallpaperId });
+
+            if (like == null)
+            {
+                return false;
+            }
+
+            if (like.IsActive == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public async Task Like(WallpaperServiceModel model, string userId)
         {
             var user = await repo.GetByIdAsync<ApplicationUser>(userId);
@@ -30,11 +49,20 @@ namespace WallpaperApp.Core.Services
                 throw new Exception();
             }
 
-            user.Likes.Add(new Like()
+            var like = await repo.GetByIdsAsync<Like>(new object[] { userId, model.Id });
+
+            if (like != null)
             {
-                User = user,
-                Wallpaper = wallpaper
-            });
+                like.IsActive = true;
+            }
+            else
+            {
+                user.Likes.Add(new Like()
+                {
+                    User = user,
+                    Wallpaper = wallpaper
+                });
+            }
 
             await repo.SaveChangesAsync();
         }
@@ -44,6 +72,7 @@ namespace WallpaperApp.Core.Services
             return await repo.AllReadonly<Like>()
                 .Where(f => f.UserId == userId)
                 .Where(f => f.IsActive)
+                .Where(f => f.Wallpaper.IsActive)
                 .Select(f => new WallpaperServiceModel()
                 {
                     Id = f.WallpaperId,
