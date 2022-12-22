@@ -1,0 +1,45 @@
+﻿@model ApplicationUserLoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<section class="section-form">
+    <form method="post">
+        <div class="form-account">
+            <div class="form__head">
+                <h2>Login</h2>
+            </div>
+
+            <div class="form__body">
+                <div class="form__row">
+                    <label asp-for="Email" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Email" class="field" placeholder="Email" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="Email" class="form__validation"></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="Password" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Password" class="field" placeholder="Password" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="Password" class="form__validation"></span>
+                </div>
+            </div>
+
+            <div class="form__actions">
+                <input class="btn btn--blue" type="submit" value="Login" />
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

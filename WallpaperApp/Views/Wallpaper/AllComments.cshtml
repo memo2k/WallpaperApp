@@ -1,16 +1,47 @@
-﻿@model IEnumerable<CommentViewModel>
+﻿@using WallpaperApp.Extensions
+@model IEnumerable<CommentViewModel>
 
-
-@foreach (var comment in Model)
-{
-    <div style="padding-top: 300px">
-        <div>@comment.Text</div>
-        <div>@comment.User.UserName</div>
-
-        <form asp-area="" asp-controller="Comment" asp-action="Delete"
-          asp-route-id="@comment.Id" method="post">
-            <input class="btn" type="submit" value="Delete" />
-        </form>
-    </div>
-    
+@{
+    ViewBag.Title = "Comments";
 }
+
+<section class="comments">
+    <div class="shell">
+        <div class="page-title">
+            <h1>Comments</h1>
+        </div>
+        @if (Model.Any())
+        {
+            @foreach (var comment in Model)
+            {
+                <div class="comments__section">
+                    <div class="comments__details">
+                        <div class="comments__title">
+                            <h1><i class="fa-regular fa-user fa-xl"></i> @comment.User.UserName</h1>
+                        </div>
+
+                        <div class="comments__text">
+                            <h3>@comment.Text</h3>
+                        </div>
+                    </div>
+                    
+                    @{
+                        var userId = User.Id();
+                        if (@comment.UserId == userId) {
+                            <div class="comment__action">
+                                <form asp-area="" asp-controller="Comment" asp-action="Delete"
+                                 asp-route-id="@comment.Id" asp-route-wallpaperId="@comment.WallpaperId" method="post">
+                                    <button class="btn btn--delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <h2>No comments yet.</h2>
+        }
+        </div>
+</section>

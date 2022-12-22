@@ -1,34 +1,54 @@
 ﻿@model IEnumerable<WallpaperServiceModel>
 
-@foreach(var favorite in Model) {
-    <div class="post">
-        <div class="post__image">
-            <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@favorite.Id">
-                <img src="@favorite.ImageUrl" alt="">
-            </a>
-        </div>
+@{
+    ViewBag.Title = "Favorite Wallpapers";
+}
 
-        <div class="post__details">
-            <div class="post__author">
-                @*<a href="#">
-            <img src="@Model.ImageUrl" alt="pfp">
-            </a>*@
-
-                <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@favorite.Id">@favorite.User.UserName</a>
-            </div>
-
-            <div class="post__actions">
-                <form asp-area="" asp-controller="Like" asp-action="Like"
-                  asp-route-id="@favorite.Id" method="post">
-                    <button type="submit" class="btn btn--like"><i class="fa-regular fa-heart fa-xl"></i></button>
-                </form>
-
-
-                <form asp-area="" asp-controller="Favorite" asp-action="Remove"
-                  asp-route-id="@favorite.Id" method="post">
-                    <button type="submit" class="btn btn--like"><i class="fa-regular fa-bookmark fa-xl"></i></button>
-                </form>
-            </div>
+<section class="my-wallpapers">
+    <div class="page-title">
+        <div class="shell">
+            <h1>Favorite Wallpapers</h1>
         </div>
     </div>
-}
+
+    @if (Model.Any())
+    {
+        <section class="posts">
+            <div class="posts__feed">
+                @foreach (var favorite in Model)
+                {
+                    <div class="post">
+                        <div class="post__image">
+                            <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@favorite.Id">
+                                <img src="@favorite.ImageUrl" alt="">
+                            </a>
+                        </div>
+
+                        <div class="post__details">
+                            <div class="post__author">
+                                <a asp-area="" asp-controller="Wallpaper" asp-action="Details" asp-route-id="@favorite.Id">@favorite.Title</a>
+                            </div>
+
+                            <div class="post__actions">
+                                <form asp-area="" asp-controller="Like" asp-action="Like"
+                              asp-route-id="@favorite.Id" method="post">
+                                    <button type="submit" class="btn btn--like"><i class="fa-regular fa-heart fa-xl"></i></button>
+                                </form>
+
+
+                                <form asp-area="" asp-controller="Favorite" asp-action="Remove"
+                              asp-route-id="@favorite.Id" method="post">
+                                    <button type="submit" class="btn btn--like"><i class="fa-regular fa-star fa-xl"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+    else
+    {
+        <h2>You haven't added anythig to favorites yet.</h2>
+    }
+</section>

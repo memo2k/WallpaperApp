@@ -1,0 +1,65 @@
+﻿@model ApplicationUserRegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<section class="section-form">
+    <form method="post">
+        <div class="form-account">
+            <div class="form__head">
+                <h2>Register</h2>
+            </div>
+
+            <div class="form__body">
+                <div class="form__row">
+                    <label asp-for="UserName" class="form__label">Username</label>
+
+                    <div class="form__field">
+                        <input asp-for="UserName" class="field" placeholder="Username" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="UserName" class="form__validation"></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="Email" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Email" class="field" placeholder="Email" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="Email" class="form__validation"></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="Password" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="Password" class="field" placeholder="Password" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="Password" class="form__validation"></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="ConfirmPassword" class="form__label">Confirm Password</label>
+
+                    <div class="form__field">
+                        <input asp-for="ConfirmPassword" class="field" placeholder="Confirm password" aria-required="true" />
+                    </div>
+
+                    <span asp-validation-for="ConfirmPassword" class="form__validation"></span>
+                </div>
+            </div>
+
+            <div class="form__actions">
+                <input class="btn btn--blue" type="submit" value="Register" />
+            </div>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

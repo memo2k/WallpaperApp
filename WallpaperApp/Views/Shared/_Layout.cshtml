@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Wallpaper App</title>
-    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/7db5b19640.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <partial name="_UserMessages" />
@@ -24,10 +25,6 @@
                         <ul>
                             <li>
                                 <a asp-area="" asp-controller="Wallpaper" asp-action="All">Browse Now</a>
-                            </li>
-
-                            <li>
-                                <a asp-area="" asp-controller="Wallpaper" asp-action="About">About</a>
                             </li>
 
                             <partial name="_LoginPartial" />
@@ -82,27 +79,15 @@
                             <nav class="nav">
                                 <ul>
                                     <li>
-                                        <a href="#">About</a>
+                                        <a href="#">Wallpapers</a>
                                     </li>
 
                                     <li>
-                                        <a href="#">Blog</a>
+                                        <a href="#">Join</a>
                                     </li>
 
                                     <li>
-                                        <a href="#">Community</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Join the team</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Help Center</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Press</a>
+                                        <a href="#">Log in</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -124,31 +109,7 @@
                                     </li>
 
                                     <li>
-                                        <a href="#">Anime</a>
-                                    </li>
-
-                                    <li>
                                         <a href="#">Animals</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Mountain</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Ocean</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">City</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">4K Wallpapers</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">HD Wallpapers</a>
                                     </li>
 
                                     <li>
@@ -167,10 +128,9 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/toastr/toastr.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

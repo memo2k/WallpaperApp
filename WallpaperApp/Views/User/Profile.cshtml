@@ -1,0 +1,43 @@
+﻿@model ApplicationUserProfileModel
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<section class="details-profile">
+    <div class="shell">
+        <div class="page-title">
+            <h1>My Profile</h1>
+        </div>
+
+        <div class="details__profile-inner">
+            <div class="details__profile-info">
+                <div><i class="fa-regular fa-user fa-xl"></i> @Model.UserName</div>
+                <div><i class="fa-solid fa-envelope"></i> @Model.Email</div>
+            </div>
+
+            <div class="details__profile-action">
+                <nav>
+                    <ul>
+                        <li>
+                            <a class="btn" asp-controller="Wallpaper" asp-action="Mine">My Wallpapers</a>
+                        </li>
+
+                        <li>
+                            <a class="btn" asp-controller="Favorite" asp-action="MyFavorites">Favorites</a>
+                        </li>
+
+                        <li>
+                            <a class="btn" asp-controller="Like" asp-action="AllLiked">Liked Wallpapers</a>
+                        </li>
+
+                        <li>
+                            <a class="btn" asp-controller="User" asp-action="Edit">Edit</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+    </div>
+</section>

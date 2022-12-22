@@ -1,0 +1,41 @@
+﻿@model ApplicationUserEditModel
+
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+<section class="section-form">
+    <form method="post">
+        <div class="form">
+            <div class="form__head">
+                <h2>Edit Profile</h2>
+            </div>
+
+            <div class="form__body">
+                <div class="form__row">
+                    <label asp-for="@Model.UserName" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="@Model.UserName" class="field" placeholder="Username..." />
+                    </div>
+
+                    <span asp-validation-for="@Model.UserName" class="form__validation"></span>
+                </div>
+
+                <div class="form__row">
+                    <label asp-for="@Model.Email" class="form__label"></label>
+
+                    <div class="form__field">
+                        <input asp-for="@Model.Email" class="field" placeholder="Email..." />
+                    </div>
+
+                    <span asp-validation-for="@Model.Email" class="form__validation"></span>
+                </div>
+            </div>
+
+            <div class="form__actions">
+                <input class="btn btn--blue" type="submit" value="Save" />
+            </div>
+        </div>
+    </form>
+</section>

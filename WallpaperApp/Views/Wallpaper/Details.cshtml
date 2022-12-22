@@ -1,10 +1,11 @@
-﻿@model WallpaperDetailsModel
+﻿@using WallpaperApp.Extensions
+@model WallpaperDetailsModel
 
 @{
     ViewBag.Title = "Wallpaper Details";
 }
 
-<section class="wallpaper">
+@*<section class="wallpaper">
     <div class="wallpaper__image">
         <img src="@Model.ImageUrl"/>
     </div>
@@ -42,24 +43,101 @@
                asp-route-wallpaperId="@Model.Id">Add Comment</a>
 
             <a class="btn" asp-controller="Wallpaper" asp-action="AllComments"
-               asp-route-wallpaperId="@Model.Id">View Comment</a>
+               asp-route-wallpaperId="@Model.Id">View Comments</a>
 
             <form asp-area="" asp-controller="Wallpaper" asp-action="Delete"
                   asp-route-id="@Model.Id" method="post">
                 <input class="btn" type="submit" value="Delete" />
             </form>
 
-            @*@if (User.Identity!.IsAuthenticated) 
+            @if (User.Identity!.IsAuthenticated) 
             {
                 <form asp-controller="Comment" asp-action="Add" asp->
 
                 </form>
-            }*@
+            }
 
         </div>
 
         <div class="wallpaper__comments">
 
+        </div>
+    </div>
+</section>*@
+
+<section class="details-wallpaper">
+    <div class="details__inner">
+        <div class="details__image">
+            <img src="@Model.ImageUrl" height="1000" />
+        </div>
+
+        <div class="details__content">
+            <div class="shell">
+                <div class="details__content-inner">
+                    <div class="details__left">
+                        <div class="details__info">
+                            <ul>
+                                <li>
+                                    <h1><i class="fa-regular fa-user fa-xl"></i> @Model.User.UserName</h1>
+                                </li>
+
+                                <li>
+                                    <h2>@Model.Title</h2>
+                                </li>
+
+                                <li>
+                                    <p><i class="fa-solid fa-camera"></i> @Model.Camera</p>
+                                </li>
+
+                                <li>
+                                    <p><i class="fa-solid fa-display"></i> @Model.Resolution</p>
+                                </li>
+
+                                <li>
+                                    <p><i class="fa-solid fa-table-cells-large"></i> @Model.Category</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="details__actions">
+                            <ul>
+                                <li>
+                                    <a class="btn" asp-controller="Wallpaper" asp-action="AllComments"
+                                       asp-route-wallpaperId="@Model.Id">View Comments</a>
+                                </li>
+
+                                @if (User.Identity.IsAuthenticated) {
+                                    <li>
+                                        <a class="btn" asp-controller="Comment" asp-action="Add"
+                                       asp-route-wallpaperId="@Model.Id">Add Comment</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="details__right">
+                        <ul>
+                            @{
+                                var userId = User.Id();
+                                if (@Model.User.Id == userId) {
+                                    <li>
+                                        <a class="btn" asp-controller="Wallpaper" asp-action="Edit"
+                                   asp-route-id="@Model.Id">Edit</a>
+                                    </li>
+
+                                    <li>
+                                        <form asp-area="" asp-controller="Wallpaper" asp-action="Delete"
+                                      asp-route-id="@Model.Id" method="post">
+                                            <button class="btn btn--delete" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                                        </form>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
