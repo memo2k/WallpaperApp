@@ -1,0 +1,23 @@
+﻿.comments {
+    min-height: 100vh;
+}
+
+.comments__section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    border-bottom: 2px solid gray;
+}
+
+.comments__details .comments__title {
+    margin-bottom: 20px;
+}
+
+.comments__details .comments__text {
+    margin-bottom: 10px;
+    margin-left: 25px;
+}
+
+.comments h3 {
+    color: rgb(70, 70, 70);
+}

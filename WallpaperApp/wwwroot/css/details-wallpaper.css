@@ -1,0 +1,64 @@
+﻿.details-wallpaper .details__image {
+    max-width: 100%;
+    background-color: rgb(51, 56, 70);
+    text-align: center;
+    min-height: 800px;
+    margin-bottom: 50px;
+}
+
+.details-wallpaper .details__image img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.details-wallpaper a {
+    font-size: 16px;
+    background-color: #78acf4;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    transition: .2s;
+}
+
+.details-wallpaper .details__content {
+    height: 300px;
+}
+
+.details-wallpaper .details__content-inner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-wallpaper a:hover {
+    background-color: #9cc1f6;
+    transition: .2s;
+}
+
+.details-wallpaper .details__info {
+    margin-bottom: 80px;
+}
+
+.details-wallpaper .details__info ul li + li {
+    margin-top: 10px;
+}
+
+.details-wallpaper .details__left h2 {
+    color: rgb(50, 50, 50);
+}
+
+.details-wallpaper .details__actions ul {
+    display: flex;
+}
+
+.details-wallpaper .details__actions li + li {
+    margin-left: 10px;
+}
+
+.details-wallpaper .details__right ul {
+    display: flex;
+    align-items: center;
+}
+
+.details-wallpaper .details__right li + li {
+    margin-left: 10px;
+}

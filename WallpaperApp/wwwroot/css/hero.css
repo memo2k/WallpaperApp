@@ -6,13 +6,8 @@
 }
 
 .hero-index {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-index.jpg");
-    height: 1400px;
-}
-
-.hero-index__inverted {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-index-inverted.jpg");
-    height: 1400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/hero-index-bg.jpg");
+    height: 1000px;
 }
 
 .hero, .hero-index, .hero-index__inverted {
@@ -21,9 +16,16 @@
 }
 
 .hero__inner {
-    padding-top: 260px;
+    padding-top: 220px;
     color: #fff;
-    max-width: 1000px;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero__content {
+    max-width: 600px
 }
 
 .hero__title {
@@ -36,6 +38,7 @@
 
 .hero__details p {
     font-size: 26px;
+    margin-bottom: 120px;
 }
 
 @media (max-width: 1024px) {
