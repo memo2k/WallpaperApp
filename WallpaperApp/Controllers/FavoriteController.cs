@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WallpaperApp.Core.Constants;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
+using WallpaperApp.Core.Services;
 using WallpaperApp.Extensions;
 
 namespace WallpaperApp.Controllers
@@ -26,8 +28,17 @@ namespace WallpaperApp.Controllers
         public async Task<IActionResult> Add(WallpaperServiceModel model)
         {
             var userId = User.Id();
+
+            if (await favoriteService.IsInFavorites(userId, model.Id))
+            {
+                await favoriteService.RemoveFromFavorite(userId, model.Id);
+                TempData[MessageConstant.SuccessMessage] = "Wallpaper removed from favorites";
+                return RedirectToAction("All", "Wallpaper");
+            }
+
             await favoriteService.AddToFavorites(model, userId);
-            return RedirectToAction("Index", "Home");
+            TempData[MessageConstant.SuccessMessage] = "Wallpaper added to favorites";
+            return RedirectToAction("MyFavorites", "Favorite");
         }
 
         public async Task<IActionResult> MyFavorites()
@@ -42,7 +53,7 @@ namespace WallpaperApp.Controllers
         {
             var userId = User.Id();
             await favoriteService.RemoveFromFavorite(userId, model.Id);
-
+            TempData[MessageConstant.SuccessMessage] = "Wallpaper removed from favorites";
             return RedirectToAction("MyFavorites", "Favorite");
         }
     }

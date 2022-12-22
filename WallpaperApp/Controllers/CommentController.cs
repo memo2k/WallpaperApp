@@ -51,15 +51,15 @@ namespace WallpaperApp.Controllers
 
             await commentService.AddComment(model);
 
-            return RedirectToAction("Details", "Wallpaper", new { wallpaperId = model.WallpaperId });
+            return RedirectToAction("All", "Wallpaper");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(CommentViewModel model, int id)
         {
             await commentService.DeleteComment(id);
 
-            return RedirectToAction("All", "Wallpaper");
+            return RedirectToAction("AllComments", "Wallpaper", new { wallpaperId = model.WallpaperId });
         }
     }
 }

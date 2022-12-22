@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using WallpaperApp.Core.Constants;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
 using WallpaperApp.Extensions;
@@ -31,8 +32,7 @@ namespace WallpaperApp.Controllers
             var result = await wallpaperService.All(
                 query.Category,
                 query.Resolution,
-                query.SearchTerm,
-                query.Sorting);
+                query.SearchTerm);
 
             query.Categories = await wallpaperService.AllCategoriesNames();
             query.Resolutions = await wallpaperService.AllResolutionsSizes();
@@ -91,7 +91,7 @@ namespace WallpaperApp.Controllers
 
             await wallpaperService.Create(model);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("All", "Wallpaper");
         }
 
         [HttpGet]
@@ -104,7 +104,8 @@ namespace WallpaperApp.Controllers
 
             if (!await wallpaperService.isAuthor(id, User.Id()))
             {
-                return RedirectToAction("/Account/AccessDenied", new { area = "Identity" });
+                TempData[MessageConstant.ErrorMessage] = "You cannot access this page.";
+                return RedirectToAction(nameof(All));
             }
 
             var wallpaper = await wallpaperService.WallpaperDetailsById(id);
@@ -139,16 +140,9 @@ namespace WallpaperApp.Controllers
 
             if (!await wallpaperService.isAuthor(model.Id, User.Id()))
             {
-                return RedirectToAction("/Account/AccessDenied", new { area = "Identity" });
+                TempData[MessageConstant.ErrorMessage] = "You cannot access this page.";
+                return RedirectToAction(nameof(Details), new { model.Id });
             }
-
-            //if (!ModelState.IsValid)
-            //{
-            //    model.WallpaperCategories = await wallpaperService.AllCategories();
-            //    model.WallpaperResolutions = await wallpaperService.AllResolutions();
-
-            //    return View(model);
-            //}
 
             await wallpaperService.Edit(model);
 
@@ -158,21 +152,18 @@ namespace WallpaperApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            //if (await wallpaperService.HasLikes(id))
-            //{
-            //    await wallpaperService.DeleteFromLikes(id);
-            //}
-
-            //if (await wallpaperService.HasFavorites(id))
-            //{
-            //    await wallpaperService.DeleteFromFavorites(id);
-            //}
+            if (!await wallpaperService.isAuthor(id, User.Id()))
+            {
+                TempData[MessageConstant.ErrorMessage] = "You cannot access this page.";
+                return RedirectToAction(nameof(All));
+            }
 
             await wallpaperService.Delete(id);
 
             return RedirectToAction("All", "Wallpaper");
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> AllComments(int wallpaperId)
         {
             var comments = await commentService.GetAllComments(wallpaperId);
