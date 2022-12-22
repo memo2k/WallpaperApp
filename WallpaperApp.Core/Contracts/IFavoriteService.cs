@@ -12,5 +12,6 @@ namespace WallpaperApp.Core.Contracts
         Task AddToFavorites(WallpaperServiceModel model, string userId);
         Task<IEnumerable<WallpaperServiceModel>> FavoritesByUserId(string userId);
         Task RemoveFromFavorite(string userId, int wallpaperId);
+        Task<bool> IsInFavorites(string userId, int wallpaperId);
     }
 }

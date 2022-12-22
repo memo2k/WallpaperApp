@@ -12,5 +12,6 @@ namespace WallpaperApp.Core.Contracts
         Task Like(WallpaperServiceModel model, string userId);
         Task<IEnumerable<WallpaperServiceModel>> LikedByUserId(string userId);
         Task Unlike(string userId, int wallpaperId);
+        Task<bool> IsInLikes(string userId, int wallpaperId);
     }
 }
