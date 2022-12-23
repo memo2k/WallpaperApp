@@ -5,8 +5,7 @@
 .details-wallpaper .details__image {
     max-width: 100%;
     background-color: rgb(51, 56, 70);
-    text-align: center;
-    min-height: 800px;
+    text-align: center;  
     margin-bottom: 50px;
 }
 
@@ -65,4 +64,25 @@
 
 .details-wallpaper .details__right li + li {
     margin-left: 10px;
+}
+
+@media (max-width: 1024px) {
+    .details-wallpaper .details__image {
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .details-wallpaper .details__actions ul {
+        display: block;
+    }
+
+    .details-wallpaper .details__actions li + li {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .details-wallpaper .details__content {
+        height: 330px;
+    }
 }

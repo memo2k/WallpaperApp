@@ -64,11 +64,17 @@
     margin-top: 30px;
 }
 
-    .form__row--select + .form__row--select {
+    .form-account .form__row--select + .form__row--select {
         margin-left: 20px;
     }
 
-    .form__row--select select {
+    .form-account .form__row--select select {
         padding: 10px 50px 10px 20px;
         font-size: 18px;
     }
+
+@media (max-width: 880px) {
+    .form-account {
+        max-width: 400px;
+    }
+}

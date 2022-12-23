@@ -90,7 +90,7 @@ namespace WallpaperApp.Controllers
             }
 
             await wallpaperService.Create(model);
-
+            TempData[MessageConstant.SuccessMessage] = "Wallpaper created successfully";
             return RedirectToAction("All", "Wallpaper");
         }
 
@@ -145,7 +145,7 @@ namespace WallpaperApp.Controllers
             }
 
             await wallpaperService.Edit(model);
-
+            TempData[MessageConstant.SuccessMessage] = "Wallpaper updated successfully";
             return RedirectToAction(nameof(Details), new { model.Id });
         }
 
@@ -159,7 +159,7 @@ namespace WallpaperApp.Controllers
             }
 
             await wallpaperService.Delete(id);
-
+            TempData[MessageConstant.SuccessMessage] = "Wallpaper was deleted successfully";
             return RedirectToAction("All", "Wallpaper");
         }
 

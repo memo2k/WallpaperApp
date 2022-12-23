@@ -39,3 +39,28 @@
     background-color: #9cc1f6;
     transition: .2s;
 }
+
+@media (max-width: 1270px) {
+    .hero-index .hero__inner {
+        display: block;
+    }
+    .hero-index .hero__content {
+        margin: 0 auto;
+    }
+
+    .hero-index img {
+        height: 400px;
+        width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-index {
+        height: 700px;
+    }
+
+    .hero-index img {
+        height: 200px;
+        width: 360px;
+    }
+}

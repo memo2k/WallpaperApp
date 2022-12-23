@@ -11,9 +11,7 @@ namespace WallpaperApp.Core.Contracts
     public interface IApplicationUserService
     {
         Task<ApplicationUserProfileModel> GetUserById(string userId);
-
         Task<ApplicationUserEditModel> GetUser(string userId);
-
         Task UpdateUser(ApplicationUserEditModel model);
     }
 }

@@ -141,8 +141,20 @@ namespace WallpaperApp.Controllers
             var userId = User.Id();
             model.Id = userId;
 
-            await applicationUserService.UpdateUser(model);
+            if (model.Email == null)
+            {
+                TempData[MessageConstant.ErrorMessage] = "Please add an email.";
+                return View(model);
+            }
 
+            if (model.UserName == null)
+            {
+                TempData[MessageConstant.ErrorMessage] = "Please add a username.";
+                return View(model);
+            }
+
+            await applicationUserService.UpdateUser(model);
+            TempData[MessageConstant.SuccessMessage] = "User updated successfully";
             return RedirectToAction("Profile", "User");
         }
 

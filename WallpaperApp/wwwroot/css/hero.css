@@ -41,8 +41,28 @@
     margin-bottom: 120px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1270px) {
+    .hero {
+        height: 750px;
+    }
+
+    .hero__inner {
+        padding-top: 100px;
+        justify-content: center;
+    }
+
+    .hero__details p {
+        margin-bottom: 50px;
+    }
+
     .hero__inner {
         text-align: center;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 850px;
     }
 }

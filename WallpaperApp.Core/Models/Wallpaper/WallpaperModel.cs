@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WallpaperApp.Infrastructure.Data;
+using static System.Net.WebRequestMethods;
 
 namespace WallpaperApp.Core.Models.Wallpaper
 {
@@ -26,6 +27,7 @@ namespace WallpaperApp.Core.Models.Wallpaper
 
         [Required]
         [Display(Name = "Image URL")]
+        [RegularExpression(@"(https?:)?//?[^\'""<>]+?\.(jpg|jpeg|gif|png)", ErrorMessage = "Invalid Image Url")]
         public string ImageUrl { get; set; } = null!;
 
         [Display(Name = "Category")]

@@ -23,7 +23,7 @@ namespace WallpaperApp.Core.Models.ApplicationUser
         public string Password { get; set; }
 
         [Required]
-        [Compare(nameof(Password))]
+        [Compare(nameof(Password), ErrorMessage = "Passwords don't match")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
     }

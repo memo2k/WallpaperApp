@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Wallpaper;
 using WallpaperApp.Infrastructure.Data;

@@ -11,9 +11,7 @@ namespace WallpaperApp.Core.Contracts
     public interface ICommentService
     {
         Task AddComment(AddCommentViewModel model);
-        //Task EditComment(EditCommentViewModel model);
         Task<IEnumerable<CommentViewModel>> GetAllComments(int wallpaperId);
-
         Task DeleteComment(int id);
     }
 }

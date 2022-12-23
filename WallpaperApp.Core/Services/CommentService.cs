@@ -66,19 +66,5 @@ namespace WallpaperApp.Core.Services
                 })
                 .ToListAsync();
         }
-
-
-        //public async Task EditComment(EditCommentViewModel model)
-        //{
-        //    var comment = await repo.GetByIdAsync<Comment>(model.Id);
-
-        //    if (comment == null)
-        //    {
-        //        throw new Exception();
-        //    }
-
-        //    comment.Text = model.Text;
-        //    await repo.SaveChangesAsync();
-        //}
     }
 }

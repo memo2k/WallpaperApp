@@ -5,66 +5,6 @@
     ViewBag.Title = "Wallpaper Details";
 }
 
-@*<section class="wallpaper">
-    <div class="wallpaper__image">
-        <img src="@Model.ImageUrl"/>
-    </div>
-
-    <div class="wallpaper__details">
-        <div class="wallpaper__user-details">
-            <div>
-                <h3>@Model.User.UserName</h3>
-            </div>
-
-            <div>
-                <h3>@Model.User.Email</h3>
-            </div>
-
-            <div>
-                <h3>@Model.Category</h3>
-            </div>
-
-            <div>
-                <h3>@Model.Resolution</h3>
-            </div>
-
-            <div>
-                <h3>@Model.Camera</h3>
-            </div>
-
-            <div>
-                <h3>@Model.Title</h3>
-            </div>
-
-            <a class="btn" asp-controller="Wallpaper" asp-action="Edit"
-               asp-route-id="@Model.Id">Edit</a>
-
-            <a class="btn" asp-controller="Comment" asp-action="Add"
-               asp-route-wallpaperId="@Model.Id">Add Comment</a>
-
-            <a class="btn" asp-controller="Wallpaper" asp-action="AllComments"
-               asp-route-wallpaperId="@Model.Id">View Comments</a>
-
-            <form asp-area="" asp-controller="Wallpaper" asp-action="Delete"
-                  asp-route-id="@Model.Id" method="post">
-                <input class="btn" type="submit" value="Delete" />
-            </form>
-
-            @if (User.Identity!.IsAuthenticated) 
-            {
-                <form asp-controller="Comment" asp-action="Add" asp->
-
-                </form>
-            }
-
-        </div>
-
-        <div class="wallpaper__comments">
-
-        </div>
-    </div>
-</section>*@
-
 <section class="details-wallpaper">
     <div class="details__inner">
         <div class="details__image">

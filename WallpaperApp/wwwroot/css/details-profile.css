@@ -31,3 +31,25 @@
 .details__profile-action nav ul li a:hover {
     opacity: 0.5;
 }
+
+@media (max-width: 1270px) {
+}
+
+@media (max-width: 768px) {
+    .details__profile-info {
+        display: block;
+    }
+
+    .details__profile-info div + div {
+        margin-top: 20px;
+    }
+
+    .details__profile-action nav ul {
+        display: block;
+    }
+
+    .details__profile-action nav ul li + li {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

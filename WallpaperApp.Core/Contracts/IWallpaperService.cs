@@ -30,10 +30,6 @@ namespace WallpaperApp.Core.Contracts
         Task<int> WallpaperCategoryId(int id);
         Task<int> WallpaperResolutionId(int id);
         Task<bool> isAuthor(int wallpaperId, string userId);
-        //Task<bool> HasLikes(int id);
-        //Task<bool> HasFavorites(int id);
-        //Task DeleteFromLikes(int id);
-        //Task DeleteFromFavorites(int id);
         Task Delete(int wallpaperId);
     }
 }

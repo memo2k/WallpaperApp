@@ -11,12 +11,10 @@ namespace WallpaperApp.Controllers
     public class LikeController : Controller
     {
         private readonly ILikeService likeService;
-        private readonly IRepository repo;
 
-        public LikeController(ILikeService _likeService, IRepository _repo)
+        public LikeController(ILikeService _likeService)
         {
             likeService = _likeService;
-            repo = _repo;
         }
 
         [HttpPost]

@@ -1,6 +1,7 @@
 ﻿using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WallpaperApp.Core.Constants;
 using WallpaperApp.Core.Contracts;
 using WallpaperApp.Core.Models.Comment;
 using WallpaperApp.Core.Services;
@@ -50,7 +51,7 @@ namespace WallpaperApp.Controllers
             }
 
             await commentService.AddComment(model);
-
+            TempData[MessageConstant.SuccessMessage] = "Comment added successfully";
             return RedirectToAction("All", "Wallpaper");
         }
 
@@ -58,7 +59,7 @@ namespace WallpaperApp.Controllers
         public async Task<IActionResult> Delete(CommentViewModel model, int id)
         {
             await commentService.DeleteComment(id);
-
+            TempData[MessageConstant.SuccessMessage] = "Comment was deleted successfully";
             return RedirectToAction("AllComments", "Wallpaper", new { wallpaperId = model.WallpaperId });
         }
     }
