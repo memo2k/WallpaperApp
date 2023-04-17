@@ -20,7 +20,7 @@ WallpaperApp is an application for uploading wallpapers. Not signed in users can
 ## :camera: Screenshots
 ![Home](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/home.png)
 ![Login](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/login.png)
-![Register](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/register.pngg)
+![Register](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/register.png)
 ![All](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/all.png)
 ![Details](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/details.png)
 ![Upload](https://github.com/memo2k/WallpaperApp/blob/master/WallpaperApp/wwwroot/images/mdimages/upload.png)
